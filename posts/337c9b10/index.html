@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>TweakDylib與ipa合併流程 | LazyBlog</title>
+  
+  <meta name="keywords" content="Lazy;iOS;Objective-c;Swift">
+  
+  
+  <meta name="description" content="可以說是一個筆記本">
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="LazyBlog">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9.9/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+<link rel="alternate" href="/atom.xml" title="LazyBlog" type="application/atom+xml">
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>LazyBlog</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="https://www.facebook.com/lazy.scream.7"
+            
+            
+            id="https:www.facebook.comlazy.scream.7">
+            <i class='fab fa-facebook fa-fw'></i>&nbsp;臉書
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="https://league2eb.github.io/resume/"
+            
+              rel="nofollow"
+            
+            
+            id="https:league2eb.github.ioresume">
+            <i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          LazyBlog
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="home">
+									<i class='fas fa-home fa-fw'></i>&nbsp;首頁
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;歸檔
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="https://league2eb.github.io/resume/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="https:league2eb.github.ioresume">
+									<i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                  rel="nofollow"
+                
+                
+                id="home">
+								<i class='fas fa-home fa-fw'></i>&nbsp;首頁
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;歸檔
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://league2eb.github.io/resume/"
+                
+                  rel="nofollow"
+                
+                
+                id="https:league2eb.github.ioresume">
+								<i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/posts/337c9b10/">
+        TweakDylib與ipa合併流程
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://ios.league2eb.me" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>Lazy</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-04-08</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Jailbreak/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Jailbreak</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p><strong>本篇僅供學術使用</strong></p>
+<p><strong>閱讀對象：不想要手機越獄，但又想要安裝帶有Tweak功能的應用</strong></p>
+<h2 id="具備條件"><a href="#具備條件" class="headerlink" title="具備條件"></a>具備條件</h2><ul>
+<li>一台Mac(PC我不熟🌚)</li>
+<li>一台iOS設備，並且已經越獄</li>
+<li>已經安裝<a href="https://apps.apple.com/app/xcode/id497799835?mt=12" target="_blank" rel="noopener">Xcode</a>，因為會使用到<code>otool</code>、<code>install_name_tool</code>指令</li>
+<li>看過<a href="https://ios.league2eb.me/posts/26217a84/">這篇</a>文章，知道怎麼ssh連線到你的越獄設備</li>
+<li>下載<a href="https://tinyurl.com/yx7jpqe2" target="_blank" rel="noopener">libsubstrate.dylib</a>先放在桌面</li>
+<li>下載<a href="https://tinyurl.com/uvclcc8" target="_blank" rel="noopener">optool</a>，放到<code>/usr/local/bin</code></li>
+</ul>
+<p><strong>針對optool在終端機下指令，權限不夠無法執行</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x optool</span><br></pre></td></tr></table></figure>
+
+<h2 id="找一個別人寫好的deb，這邊用Facebook的Messenger作為例子"><a href="#找一個別人寫好的deb，這邊用Facebook的Messenger作為例子" class="headerlink" title="找一個別人寫好的deb，這邊用Facebook的Messenger作為例子"></a>找一個別人寫好的deb，這邊用Facebook的Messenger作為例子</h2><p>沒有使用之前，有一則廣告</p>
+<p><fancybox><img src="https://i.loli.net/2020/04/09/SUaIBXlqrbRmno2.png" alt></fancybox></p>
+<p>Tweak生效後，廣告消失了</p>
+<p><fancybox><img src="https://i.loli.net/2020/04/09/lx6awbVet8GjJBW.png" alt></fancybox></p>
+<h2 id="Cydia安裝"><a href="#Cydia安裝" class="headerlink" title="Cydia安裝"></a>Cydia安裝</h2><p><fancybox><img src="https://i.loli.net/2020/04/09/IEKw7SDPXdLxe6M.png" alt></fancybox></p>
+<h2 id="攔截deb"><a href="#攔截deb" class="headerlink" title="攔截deb"></a>攔截deb</h2><p><strong>點擊「重新啟動SpringBoard」後，deb就會被刪除</strong></p>
+<p><strong>所以請停止在這個畫面，然後操作攔截流程</strong></p>
+<p><fancybox><img src="https://i.loli.net/2020/04/09/vEZl1jORzMsDUiA.png" alt></fancybox></p>
+<ol>
+<li>首先使用終端連線到越獄的設備</li>
+<li>檢查該deb安裝檔案是否存在</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /private/var/mobile/Library/Caches/com.saurik.Cydia/archives/</span><br></pre></td></tr></table></figure>
+
+<p><fancybox><img src="https://i.loli.net/2020/04/09/TnQ9qfsvpOgW8BL.png" alt></fancybox></p>
+<p><strong>由此，可以確認我們要的檔案存在於</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/private/var/mobile/Library/Caches/com.saurik.Cydia/archives/com.haoict.messengernoads_0.0.2_iphoneos-arm.deb</span><br></pre></td></tr></table></figure>
+
+<h2 id="利用SCP把檔案傳送到Mac裡"><a href="#利用SCP把檔案傳送到Mac裡" class="headerlink" title="利用SCP把檔案傳送到Mac裡"></a>利用SCP把檔案傳送到Mac裡</h2><p><strong>建議先把終端機的路徑移動到桌面</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P2222 root@127.0.0.1:/private/var/mobile/Library/Caches/com.saurik.Cydia/archives/com.haoict.messengernoads_0.0.2_iphoneos-arm.deb ./</span><br></pre></td></tr></table></figure>
+
+<h2 id="把deb裡面的dylib拆出來"><a href="#把deb裡面的dylib拆出來" class="headerlink" title="把deb裡面的dylib拆出來"></a>把deb裡面的dylib拆出來</h2><p><strong>使用betterzip把dylib拿出來</strong></p>
+<ul>
+<li>安裝betterzip</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install betterzip</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Extract data<br><fancybox><img src="https://i.loli.net/2020/04/09/qO45Pg21JIWBUy8.png" alt></fancybox></p>
+</li>
+<li><p>持續解壓縮data並獲得Library<br><fancybox><img src="https://i.loli.net/2020/04/09/fCRkSTPpt516He8.png" alt></fancybox></p>
+</li>
+<li><p>獲得dylib<br><fancybox><img src="https://i.loli.net/2020/04/09/DfK7QPl4xAnIqNJ.png" alt></fancybox></p>
+</li>
+</ul>
+<h2 id="把Messenger砸殼"><a href="#把Messenger砸殼" class="headerlink" title="把Messenger砸殼"></a>把Messenger砸殼</h2><p><a href="https://ios.league2eb.me/posts/b6771505/">frida砸殼</a><br><a href="https://ios.league2eb.me/posts/e0179831/">Clutch砸殼</a></p>
+<h2 id="桌面建立一個資料夾，裡面要有這些東西"><a href="#桌面建立一個資料夾，裡面要有這些東西" class="headerlink" title="桌面建立一個資料夾，裡面要有這些東西"></a>桌面建立一個資料夾，裡面要有這些東西</h2><p><fancybox><img src="https://i.loli.net/2020/04/09/fkW14xDg8nXmVC6.png" alt></fancybox></p>
+<ol>
+<li>砸殼的應用</li>
+<li>libsubstrate.dylib</li>
+<li>插件的dylib</li>
+</ol>
+<h2 id="解壓縮砸殼應用"><a href="#解壓縮砸殼應用" class="headerlink" title="解壓縮砸殼應用"></a>解壓縮砸殼應用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip Messenger.ipa</span><br></pre></td></tr></table></figure>
+
+<h2 id="把libsubstrate-dylib、messengernoads-dylib丟進去Payload-Messenger"><a href="#把libsubstrate-dylib、messengernoads-dylib丟進去Payload-Messenger" class="headerlink" title="把libsubstrate.dylib、messengernoads.dylib丟進去Payload/Messenger"></a>把libsubstrate.dylib、messengernoads.dylib丟進去Payload/Messenger</h2><p><strong>等等會用到</strong></p>
+<h2 id="進入Payload-Messenger修改info-plist"><a href="#進入Payload-Messenger修改info-plist" class="headerlink" title="進入Payload/Messenger修改info.plist"></a>進入Payload/Messenger修改info.plist</h2><ul>
+<li>把下圖內容刪除<br><fancybox><img src="https://i.loli.net/2020/04/09/Ju28bs6Slcw1TLi.png" alt></fancybox></li>
+</ul>
+<p><strong>這些是支援的設備，若要支援所有的設備這個KEY必須刪除</strong></p>
+<h2 id="打開終端機並移動到Payload-Messenger底下"><a href="#打開終端機並移動到Payload-Messenger底下" class="headerlink" title="打開終端機並移動到Payload/Messenger底下"></a>打開終端機並移動到Payload/Messenger底下</h2><ul>
+<li>查看messengernoads.dylib</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">otool -L messengernoads.dylib</span><br></pre></td></tr></table></figure>
+
+<p><strong>會看到越獄手機才會用到的CydiaSubstrate</strong><br><fancybox><img src="https://i.loli.net/2020/04/09/2JmDqXQ5IlTrzvY.png" alt></fancybox></p>
+<ul>
+<li>利用install_name_tool替換CydiaSubstrate -&gt; libsubstrate.dylib</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">install_name_tool -change /Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate @loader_path/libsubstrate.dylib messengernoads.dylib</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>再次查看messengernoads.dylib</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">otool -L messengernoads.dylib</span><br></pre></td></tr></table></figure>
+
+<p><strong>會發現原來的文件路徑改為絕對路徑表示成功</strong><br><fancybox><img src="https://i.loli.net/2020/04/09/HRNa5BIMpYCF3fb.png" alt></fancybox></p>
+<h2 id="利用optool把dylib注入到目標的二進文件"><a href="#利用optool把dylib注入到目標的二進文件" class="headerlink" title="利用optool把dylib注入到目標的二進文件"></a>利用optool把dylib注入到目標的二進文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optool install -c load -p <span class="string">"@executable_path/messengernoads.dylib"</span> -t ./Messenger</span><br></pre></td></tr></table></figure>
+
+<p><strong>結果如下，表示成功</strong><br><fancybox><img src="https://i.loli.net/2020/04/09/t5yxw4ubGALjfWX.png" alt></fancybox></p>
+<h2 id="重新包裝iPA檔案"><a href="#重新包裝iPA檔案" class="headerlink" title="重新包裝iPA檔案"></a>重新包裝iPA檔案</h2><ol>
+<li>將Payload壓縮</li>
+</ol>
+<p><fancybox><img src="https://i.loli.net/2020/04/09/IxHbdJ8BznRwuGh.png" alt></fancybox></p>
+<ol start="2">
+<li>更改壓縮檔案附檔名為xxx.ipa</li>
+</ol>
+<p><fancybox><img src="https://i.loli.net/2020/04/09/ty2PC43sKezf8Mq.png" alt></fancybox></p>
+<h2 id="重簽名"><a href="#重簽名" class="headerlink" title="重簽名"></a>重簽名</h2><p><a href="https://lmgtfy.com/?q=ios+ipa+resign" target="_blank" rel="noopener">絕對學的會的方法連結</a></p>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-04T18:22:39+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新於 2020年6月4日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/iOS/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>iOS</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Mac/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Mac</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Jailbreak/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Jailbreak</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-fb" title="Facebook" rel="external nofollow noopener noreferrer"
+          
+          href="https://www.facebook.com/sharer/sharer.php?u=https://ios.league2eb.me/posts/337c9b10/&title=TweakDylib與ipa合併流程 | LazyBlog&summary="
+          
+          >
+          
+            <img src="https://image.flaticon.com/icons/png/512/124/124010.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁</h6>
+                          <h4>
+                              <a href="/posts/e02a3e3e/" rel="prev" title="mac上VPN描述檔案安裝方法">
+                                
+                                    mac上VPN描述檔案安裝方法
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/VPN/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> VPN</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/posts/a505ca0f/" rel="prev" title="CoronaTracker">
+                                  
+                                      CoronaTracker
+                                  
+                              </a>
+                          </h4>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;評論</h4>
+      
+      
+      
+        <section id="comments">
+          <div id="gitalk-container"></div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'TweakDylib與ipa合併流程',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://i.imgur.com/kmSE6P0.png'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:poloa5140@gmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/League2EB?tab=repositories"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://open.spotify.com/artist/0PaQoJb70VpcofM9CA4Lfd"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目錄</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#具備條件"><span class="toc-text">具備條件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#找一個別人寫好的deb，這邊用Facebook的Messenger作為例子"><span class="toc-text">找一個別人寫好的deb，這邊用Facebook的Messenger作為例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cydia安裝"><span class="toc-text">Cydia安裝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#攔截deb"><span class="toc-text">攔截deb</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用SCP把檔案傳送到Mac裡"><span class="toc-text">利用SCP把檔案傳送到Mac裡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把deb裡面的dylib拆出來"><span class="toc-text">把deb裡面的dylib拆出來</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把Messenger砸殼"><span class="toc-text">把Messenger砸殼</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#桌面建立一個資料夾，裡面要有這些東西"><span class="toc-text">桌面建立一個資料夾，裡面要有這些東西</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解壓縮砸殼應用"><span class="toc-text">解壓縮砸殼應用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#把libsubstrate-dylib、messengernoads-dylib丟進去Payload-Messenger"><span class="toc-text">把libsubstrate.dylib、messengernoads.dylib丟進去Payload/Messenger</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#進入Payload-Messenger修改info-plist"><span class="toc-text">進入Payload/Messenger修改info.plist</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打開終端機並移動到Payload-Messenger底下"><span class="toc-text">打開終端機並移動到Payload/Messenger底下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#利用optool把dylib注入到目標的二進文件"><span class="toc-text">利用optool把dylib注入到目標的二進文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重新包裝iPA檔案"><span class="toc-text">重新包裝iPA檔案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重簽名"><span class="toc-text">重簽名</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站內導航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          首頁
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章歸檔
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="/categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Docker/" href="/categories/Docker/"><div class='name'>Docker</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Jailbreak/" href="/categories/Jailbreak/"><div class='name'>Jailbreak</div><div class='badge'>(11)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Mac/" href="/categories/Mac/"><div class='name'>Mac</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Server/" href="/categories/Server/"><div class='name'>Server</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Shell/" href="/categories/Shell/"><div class='name'>Shell</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Xcode/" href="/categories/Xcode/"><div class='name'>Xcode</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/iOS/" href="/categories/iOS/"><div class='name'>iOS</div><div class='badge'>(18)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/mac/" href="/categories/mac/"><div class='name'>mac</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="/tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/CPU/" style="font-size: 14px; color: #999">CPU</a> <a href="/tags/Command/" style="font-size: 14px; color: #999">Command</a> <a href="/tags/CoreBluetooth/" style="font-size: 14px; color: #999">CoreBluetooth</a> <a href="/tags/Framework/" style="font-size: 14px; color: #999">Framework</a> <a href="/tags/Jailbreak/" style="font-size: 16.5px; color: #888">Jailbreak</a> <a href="/tags/Mac/" style="font-size: 21.5px; color: #666">Mac</a> <a href="/tags/NSArray/" style="font-size: 14px; color: #999">NSArray</a> <a href="/tags/NSURLSession/" style="font-size: 14px; color: #999">NSURLSession</a> <a href="/tags/NotificationCenter/" style="font-size: 14px; color: #999">NotificationCenter</a> <a href="/tags/Objective-C/" style="font-size: 19px; color: #777">Objective-C</a> <a href="/tags/Pods/" style="font-size: 16.5px; color: #888">Pods</a> <a href="/tags/Shell/" style="font-size: 14px; color: #999">Shell</a> <a href="/tags/Simulator/" style="font-size: 14px; color: #999">Simulator</a> <a href="/tags/String/" style="font-size: 14px; color: #999">String</a> <a href="/tags/Swift/" style="font-size: 24px; color: #555">Swift</a> <a href="/tags/UIApplication/" style="font-size: 16.5px; color: #888">UIApplication</a> <a href="/tags/UIView/" style="font-size: 16.5px; color: #888">UIView</a> <a href="/tags/UIViewController/" style="font-size: 19px; color: #777">UIViewController</a> <a href="/tags/VPN/" style="font-size: 14px; color: #999">VPN</a> <a href="/tags/Xcode/" style="font-size: 19px; color: #777">Xcode</a> <a href="/tags/Xcode、iOS/" style="font-size: 14px; color: #999">Xcode、iOS</a> <a href="/tags/ffmpeg/" style="font-size: 14px; color: #999">ffmpeg</a> <a href="/tags/iOS/" style="font-size: 21.5px; color: #666">iOS</a> <a href="/tags/mac/" style="font-size: 14px; color: #999">mac</a> <a href="/tags/oracle/" style="font-size: 19px; color: #777">oracle</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-thumbs-up fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;推薦文章</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://league2eb.github.io/posts/4611262f/" href="https://league2eb.github.io/posts/4611262f/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;Fastlane + Shell 打包ipa(包含憑證設定)
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="https://league2eb.github.io/posts/26217a84/" href="https://league2eb.github.io/posts/26217a84/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;使用SSH連接越獄手機，並且不要再打密碼
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:poloa5140@gmail.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/League2EB?tab=repositories"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://open.spotify.com/artist/0PaQoJb70VpcofM9CA4Lfd"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+</div>
+  <div>
+    
+       
+      總訪問量為
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      次
+    
+    。
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        if ('.cover') {
+          $('.cover').backstretch(
+          [""],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        } else {
+          $.backstretch(
+          [""],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: "03f82333204f52270880",
+      clientSecret: "ac7f273146189dbf7309c9c6361c60e4a1e8e524",
+      repo: "Comments",
+      owner: "League2EB",
+      admin: "League2EB",
+      
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+      
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+    gitalk.render('gitalk-container');
+  </script>
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "複製成功";
+  let COPY_FAILURE = "複製失敗";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>利用Objective-C提交Google表單 | LazyBlog</title>
+  
+  <meta name="keywords" content="Lazy;iOS;Objective-c;Swift">
+  
+  
+  <meta name="description" content="可以說是一個筆記本">
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="LazyBlog">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9.9/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+<link rel="alternate" href="/atom.xml" title="LazyBlog" type="application/atom+xml">
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>LazyBlog</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="https://www.facebook.com/lazy.scream.7"
+            
+            
+            id="https:www.facebook.comlazy.scream.7">
+            <i class='fab fa-facebook fa-fw'></i>&nbsp;臉書
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="https://league2eb.github.io/resume/"
+            
+              rel="nofollow"
+            
+            
+            id="https:league2eb.github.ioresume">
+            <i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          LazyBlog
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="home">
+									<i class='fas fa-home fa-fw'></i>&nbsp;首頁
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;歸檔
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="https://league2eb.github.io/resume/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="https:league2eb.github.ioresume">
+									<i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                  rel="nofollow"
+                
+                
+                id="home">
+								<i class='fas fa-home fa-fw'></i>&nbsp;首頁
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;歸檔
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://league2eb.github.io/resume/"
+                
+                  rel="nofollow"
+                
+                
+                id="https:league2eb.github.ioresume">
+								<i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/posts/9f7d908f/">
+        利用Objective-C提交Google表單
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://ios.league2eb.me" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>Lazy</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-09-17</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/iOS/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>iOS</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h2 id="可以拿來幹嘛？"><a href="#可以拿來幹嘛？" class="headerlink" title="可以拿來幹嘛？"></a>可以拿來幹嘛？</h2><p> 可以將您想要紀錄的字串、資訊自動填寫到自己建立的Google表單(例如偷偷記錄使用者的帳   號密碼之類？？？？？？)講直白一點就是「利用Google表單建立微型資料庫」</p>
+<h6 id="首先創建一個空白的表單"><a href="#首先創建一個空白的表單" class="headerlink" title="首先創建一個空白的表單"></a>首先創建一個空白的表單</h6><p><img src="/images/GoogleForm/1.png" alt></p>
+<h6 id="輸入完表單標題後下方的問題欄位狀型態改為「段落」"><a href="#輸入完表單標題後下方的問題欄位狀型態改為「段落」" class="headerlink" title="輸入完表單標題後下方的問題欄位狀型態改為「段落」"></a>輸入完表單標題後下方的問題欄位狀型態改為「段落」</h6><p><img src="/images/GoogleForm/2.png" alt></p>
+<h6 id="點選右上角的齒輪"><a href="#點選右上角的齒輪" class="headerlink" title="點選右上角的齒輪"></a>點選右上角的齒輪</h6><p><img src="/images/GoogleForm/3.png" alt></p>
+<h6 id="把「需要登入」的選項全部取消後儲存"><a href="#把「需要登入」的選項全部取消後儲存" class="headerlink" title="把「需要登入」的選項全部取消後儲存"></a>把「需要登入」的選項全部取消後儲存</h6><p><img src="/images/GoogleForm/4.png" alt></p>
+<h6 id="把表單的網址中複製下來「暫時放到記事本」並且把網址最後面的「edit」刪除"><a href="#把表單的網址中複製下來「暫時放到記事本」並且把網址最後面的「edit」刪除" class="headerlink" title="把表單的網址中複製下來「暫時放到記事本」並且把網址最後面的「edit」刪除"></a>把表單的網址中複製下來「暫時放到記事本」並且把網址最後面的「edit」刪除</h6><p><img src="/images/GoogleForm/5.png" alt></p>
+<h6 id="點選右上角「…」再點選「取得預先填入的連結」"><a href="#點選右上角「…」再點選「取得預先填入的連結」" class="headerlink" title="點選右上角「…」再點選「取得預先填入的連結」"></a>點選右上角「…」再點選「取得預先填入的連結」</h6><p><img src="/images/GoogleForm/6.png" alt></p>
+<h6 id="隨便輸入一個回答，輸入完畢後點選提交"><a href="#隨便輸入一個回答，輸入完畢後點選提交" class="headerlink" title="隨便輸入一個回答，輸入完畢後點選提交"></a>隨便輸入一個回答，輸入完畢後點選提交</h6><p><img src="/images/GoogleForm/7.png" alt></p>
+<h6 id="會看到上方出現一串網址，複製到剪貼簿後會看到其中「entry-201377372」，這是欄位名稱-如果表單中有多個回答就會有多個此欄位，後面會在程式碼中提到，所以這邊就先記著"><a href="#會看到上方出現一串網址，複製到剪貼簿後會看到其中「entry-201377372」，這是欄位名稱-如果表單中有多個回答就會有多個此欄位，後面會在程式碼中提到，所以這邊就先記著" class="headerlink" title="會看到上方出現一串網址，複製到剪貼簿後會看到其中「entry.201377372」，這是欄位名稱(如果表單中有多個回答就會有多個此欄位，後面會在程式碼中提到，所以這邊就先記著)"></a>會看到上方出現一串網址，複製到剪貼簿後會看到其中「entry.201377372」，這是欄位名稱(如果表單中有多個回答就會有多個此欄位，後面會在程式碼中提到，所以這邊就先記著)</h6><p><img src="/images/GoogleForm/8.png" alt></p>
+<h6 id="欄位像這樣子"><a href="#欄位像這樣子" class="headerlink" title="欄位像這樣子"></a>欄位像這樣子</h6><p><img src="/images/GoogleForm/10.png" alt></p>
+<h6 id="9-把剛剛複製的網址貼到瀏覽器並且按下Enter"><a href="#9-把剛剛複製的網址貼到瀏覽器並且按下Enter" class="headerlink" title="9.把剛剛複製的網址貼到瀏覽器並且按下Enter"></a>9.把剛剛複製的網址貼到瀏覽器並且按下Enter</h6><h6 id="再次點選提交，提交並跳轉後把網址後面的「formResponse」複製起來貼到第5步原本刪除的「edit」位置"><a href="#再次點選提交，提交並跳轉後把網址後面的「formResponse」複製起來貼到第5步原本刪除的「edit」位置" class="headerlink" title="再次點選提交，提交並跳轉後把網址後面的「formResponse」複製起來貼到第5步原本刪除的「edit」位置"></a>再次點選提交，提交並跳轉後把網址後面的「formResponse」複製起來貼到第5步原本刪除的「edit」位置</h6><p><img src="/images/GoogleForm/9.png" alt></p>
+<h6 id="所以你的請求網址會像這樣子"><a href="#所以你的請求網址會像這樣子" class="headerlink" title="所以你的請求網址會像這樣子"></a>所以你的請求網址會像這樣子</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://docs.google.com/forms/d/1TEIA3i4C0uY6Ha3bhM5SkFzCLO61TvLzbxw-2CKDR5Y/formResponse</span><br></pre></td></tr></table></figure>
+
+<h2 id="在專案中新增一個類別叫「GoogleFormRequest」，不囉唆直上代碼"><a href="#在專案中新增一個類別叫「GoogleFormRequest」，不囉唆直上代碼" class="headerlink" title="在專案中新增一個類別叫「GoogleFormRequest」，不囉唆直上代碼"></a>在專案中新增一個類別叫「GoogleFormRequest」，不囉唆直上代碼</h2><p>GoogleFormRequest.h</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">GoogleFormDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@optional</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)didPOSTRequestSuccess;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">GoogleFormRequest</span> : <span class="title">NSObject</span></span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="keyword">id</span>&lt;GoogleFormDelegate&gt; delegate;</span><br><span class="line">+ (<span class="keyword">instancetype</span>)sharedInstance;</span><br><span class="line">- (<span class="keyword">void</span>)postWithSomething:(<span class="built_in">NSString</span> *)something;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>GoogleFormRequest.m</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"GoogleFormRequest.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> GoogleFormRequest *singletonGoogleFormRequest = <span class="literal">nil</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">GoogleFormRequest</span></span></span><br><span class="line"></span><br><span class="line">+ (<span class="keyword">instancetype</span>)sharedInstance &#123;</span><br><span class="line">    <span class="keyword">if</span> (singletonGoogleFormRequest == <span class="literal">nil</span>) &#123;</span><br><span class="line">        singletonGoogleFormRequest = [GoogleFormRequest new];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> singletonGoogleFormRequest;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)postWithSomething:(<span class="built_in">NSString</span> *)something &#123;</span><br><span class="line">    <span class="comment">//初始化請求</span></span><br><span class="line">    <span class="built_in">NSMutableURLRequest</span> *urlRequest = [[<span class="built_in">NSMutableURLRequest</span> alloc]initWithURL:[<span class="built_in">NSURL</span> URLWithString:你的請求地址]];</span><br><span class="line">    <span class="comment">/*默認的請求為GET，這邊手動設定為POST</span></span><br><span class="line"><span class="comment">    但其實在Google表單的請求中有發現，Google有開GET與POST的API，所以這兩種都可以使用</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    [urlRequest setHTTPMethod:<span class="string">@"POST"</span>];</span><br><span class="line">    <span class="comment">/*設定參數並轉換為Data 允許特殊字符(這邊專門做給輸入中文時使用，英文沒有這困擾) */</span></span><br><span class="line">    <span class="built_in">NSData</span> *parameterToData = [[[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"你的參數名稱=%@"</span>,something] stringByAddingPercentEncodingWithAllowedCharacters:[<span class="built_in">NSCharacterSet</span> URLQueryAllowedCharacterSet]] dataUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">    <span class="comment">//再把資料放到這段請求的Body中</span></span><br><span class="line">    [urlRequest setHTTPBody:parameterToData];</span><br><span class="line">    <span class="comment">//請求開始</span></span><br><span class="line">    <span class="built_in">NSURLSessionDataTask</span> *dataTask = [[<span class="built_in">NSURLSession</span> sharedSession] dataTaskWithRequest:urlRequest completionHandler:^(<span class="built_in">NSData</span> *data, <span class="built_in">NSURLResponse</span> *response, <span class="built_in">NSError</span> *error) &#123;</span><br><span class="line">        <span class="comment">//宣告網路回應</span></span><br><span class="line">        <span class="built_in">NSHTTPURLResponse</span> *httpResponse = (<span class="built_in">NSHTTPURLResponse</span> *)response;</span><br><span class="line">        <span class="comment">//訪問允許判斷</span></span><br><span class="line">        <span class="keyword">if</span>(httpResponse.statusCode == <span class="number">200</span>) &#123;</span><br><span class="line">            <span class="comment">//看你要幹什麼？</span></span><br><span class="line">            [<span class="keyword">self</span>.delegate didPOSTRequestSuccess];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;];</span><br><span class="line">    [dataTask resume];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+<p>ViewController.m 實作</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"ViewController.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"GoogleFormRequest.h"</span></span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> () &lt;<span class="title">GoogleFormDelegate</span>&gt; </span>&#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queueSerial;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) GoogleFormRequest *comm;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">    queueSerial = dispatch_queue_create(<span class="string">"comm.queue.serial"</span>, <span class="literal">nil</span>);</span><br><span class="line">    <span class="keyword">self</span>.comm = [GoogleFormRequest sharedInstance];</span><br><span class="line">    <span class="keyword">self</span>.comm.delegate = <span class="keyword">self</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">dispatch_async</span>(queueSerial, ^&#123;</span><br><span class="line">        [_comm postWithDevice:<span class="string">@"測試"</span> WithDate:<span class="literal">nil</span>];</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)didPOSTRequestSuccess &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"請求成功"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-06T05:01:52+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新於 2020年6月6日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Objective-C/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Objective-C</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/NSURLSession/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>NSURLSession</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-fb" title="Facebook" rel="external nofollow noopener noreferrer"
+          
+          href="https://www.facebook.com/sharer/sharer.php?u=https://ios.league2eb.me/posts/9f7d908f/&title=利用Objective-C提交Google表單 | LazyBlog&summary="
+          
+          >
+          
+            <img src="https://image.flaticon.com/icons/png/512/124/124010.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁</h6>
+                          <h4>
+                              <a href="/posts/6897ff7c/" rel="prev" title="開啟EC2檔案上傳修改新增權限">
+                                
+                                    開啟EC2檔案上傳修改新增權限
+                                
+                              </a>
+                          </h4>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/posts/3b0bde26/" rel="prev" title="App畫面設定為Potait時，讓某個畫面可以旋轉">
+                                  
+                                      App畫面設定為Potait時，讓某個畫面可以旋轉
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/Objective-C/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Objective-C</a> <a class="tag" href="/tags/UIViewController/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> UIViewController</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;評論</h4>
+      
+      
+      
+        <section id="comments">
+          <div id="gitalk-container"></div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: '利用Objective-C提交Google表單',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://i.imgur.com/kmSE6P0.png'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:poloa5140@gmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/League2EB?tab=repositories"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://open.spotify.com/artist/0PaQoJb70VpcofM9CA4Lfd"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目錄</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#可以拿來幹嘛？"><span class="toc-text">可以拿來幹嘛？</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#首先創建一個空白的表單"><span class="toc-text">首先創建一個空白的表單</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#輸入完表單標題後下方的問題欄位狀型態改為「段落」"><span class="toc-text">輸入完表單標題後下方的問題欄位狀型態改為「段落」</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#點選右上角的齒輪"><span class="toc-text">點選右上角的齒輪</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#把「需要登入」的選項全部取消後儲存"><span class="toc-text">把「需要登入」的選項全部取消後儲存</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#把表單的網址中複製下來「暫時放到記事本」並且把網址最後面的「edit」刪除"><span class="toc-text">把表單的網址中複製下來「暫時放到記事本」並且把網址最後面的「edit」刪除</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#點選右上角「…」再點選「取得預先填入的連結」"><span class="toc-text">點選右上角「…」再點選「取得預先填入的連結」</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#隨便輸入一個回答，輸入完畢後點選提交"><span class="toc-text">隨便輸入一個回答，輸入完畢後點選提交</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#會看到上方出現一串網址，複製到剪貼簿後會看到其中「entry-201377372」，這是欄位名稱-如果表單中有多個回答就會有多個此欄位，後面會在程式碼中提到，所以這邊就先記著"><span class="toc-text">會看到上方出現一串網址，複製到剪貼簿後會看到其中「entry.201377372」，這是欄位名稱(如果表單中有多個回答就會有多個此欄位，後面會在程式碼中提到，所以這邊就先記著)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#欄位像這樣子"><span class="toc-text">欄位像這樣子</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#9-把剛剛複製的網址貼到瀏覽器並且按下Enter"><span class="toc-text">9.把剛剛複製的網址貼到瀏覽器並且按下Enter</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#再次點選提交，提交並跳轉後把網址後面的「formResponse」複製起來貼到第5步原本刪除的「edit」位置"><span class="toc-text">再次點選提交，提交並跳轉後把網址後面的「formResponse」複製起來貼到第5步原本刪除的「edit」位置</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#所以你的請求網址會像這樣子"><span class="toc-text">所以你的請求網址會像這樣子</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在專案中新增一個類別叫「GoogleFormRequest」，不囉唆直上代碼"><span class="toc-text">在專案中新增一個類別叫「GoogleFormRequest」，不囉唆直上代碼</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站內導航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          首頁
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章歸檔
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="/categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Docker/" href="/categories/Docker/"><div class='name'>Docker</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Jailbreak/" href="/categories/Jailbreak/"><div class='name'>Jailbreak</div><div class='badge'>(11)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Mac/" href="/categories/Mac/"><div class='name'>Mac</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Server/" href="/categories/Server/"><div class='name'>Server</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Shell/" href="/categories/Shell/"><div class='name'>Shell</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Xcode/" href="/categories/Xcode/"><div class='name'>Xcode</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/iOS/" href="/categories/iOS/"><div class='name'>iOS</div><div class='badge'>(18)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/mac/" href="/categories/mac/"><div class='name'>mac</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="/tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/CPU/" style="font-size: 14px; color: #999">CPU</a> <a href="/tags/Command/" style="font-size: 14px; color: #999">Command</a> <a href="/tags/CoreBluetooth/" style="font-size: 14px; color: #999">CoreBluetooth</a> <a href="/tags/Framework/" style="font-size: 14px; color: #999">Framework</a> <a href="/tags/Jailbreak/" style="font-size: 16.5px; color: #888">Jailbreak</a> <a href="/tags/Mac/" style="font-size: 21.5px; color: #666">Mac</a> <a href="/tags/NSArray/" style="font-size: 14px; color: #999">NSArray</a> <a href="/tags/NSURLSession/" style="font-size: 14px; color: #999">NSURLSession</a> <a href="/tags/NotificationCenter/" style="font-size: 14px; color: #999">NotificationCenter</a> <a href="/tags/Objective-C/" style="font-size: 19px; color: #777">Objective-C</a> <a href="/tags/Pods/" style="font-size: 16.5px; color: #888">Pods</a> <a href="/tags/Shell/" style="font-size: 14px; color: #999">Shell</a> <a href="/tags/Simulator/" style="font-size: 14px; color: #999">Simulator</a> <a href="/tags/String/" style="font-size: 14px; color: #999">String</a> <a href="/tags/Swift/" style="font-size: 24px; color: #555">Swift</a> <a href="/tags/UIApplication/" style="font-size: 16.5px; color: #888">UIApplication</a> <a href="/tags/UIView/" style="font-size: 16.5px; color: #888">UIView</a> <a href="/tags/UIViewController/" style="font-size: 19px; color: #777">UIViewController</a> <a href="/tags/VPN/" style="font-size: 14px; color: #999">VPN</a> <a href="/tags/Xcode/" style="font-size: 19px; color: #777">Xcode</a> <a href="/tags/Xcode、iOS/" style="font-size: 14px; color: #999">Xcode、iOS</a> <a href="/tags/ffmpeg/" style="font-size: 14px; color: #999">ffmpeg</a> <a href="/tags/iOS/" style="font-size: 21.5px; color: #666">iOS</a> <a href="/tags/mac/" style="font-size: 14px; color: #999">mac</a> <a href="/tags/oracle/" style="font-size: 19px; color: #777">oracle</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-thumbs-up fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;推薦文章</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://league2eb.github.io/posts/4611262f/" href="https://league2eb.github.io/posts/4611262f/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;Fastlane + Shell 打包ipa(包含憑證設定)
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="https://league2eb.github.io/posts/26217a84/" href="https://league2eb.github.io/posts/26217a84/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;使用SSH連接越獄手機，並且不要再打密碼
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:poloa5140@gmail.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/League2EB?tab=repositories"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://open.spotify.com/artist/0PaQoJb70VpcofM9CA4Lfd"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+</div>
+  <div>
+    
+       
+      總訪問量為
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      次
+    
+    。
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        if ('.cover') {
+          $('.cover').backstretch(
+          [""],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        } else {
+          $.backstretch(
+          [""],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: "03f82333204f52270880",
+      clientSecret: "ac7f273146189dbf7309c9c6361c60e4a1e8e524",
+      repo: "Comments",
+      owner: "League2EB",
+      admin: "League2EB",
+      
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+      
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+    gitalk.render('gitalk-container');
+  </script>
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "複製成功";
+  let COPY_FAILURE = "複製失敗";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

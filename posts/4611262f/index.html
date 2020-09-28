@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Fastlane + Shell 打包ipa(包含憑證設定) | LazyBlog</title>
+  
+  <meta name="keywords" content="Lazy;iOS;Objective-c;Swift">
+  
+  
+  <meta name="description" content="可以說是一個筆記本">
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="LazyBlog">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9.9/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+<link rel="alternate" href="/atom.xml" title="LazyBlog" type="application/atom+xml">
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>LazyBlog</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="https://www.facebook.com/lazy.scream.7"
+            
+            
+            id="https:www.facebook.comlazy.scream.7">
+            <i class='fab fa-facebook fa-fw'></i>&nbsp;臉書
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="https://league2eb.github.io/resume/"
+            
+              rel="nofollow"
+            
+            
+            id="https:league2eb.github.ioresume">
+            <i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          LazyBlog
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="home">
+									<i class='fas fa-home fa-fw'></i>&nbsp;首頁
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;歸檔
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="https://league2eb.github.io/resume/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="https:league2eb.github.ioresume">
+									<i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                  rel="nofollow"
+                
+                
+                id="home">
+								<i class='fas fa-home fa-fw'></i>&nbsp;首頁
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;歸檔
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://league2eb.github.io/resume/"
+                
+                  rel="nofollow"
+                
+                
+                id="https:league2eb.github.ioresume">
+								<i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/posts/4611262f/">
+        Fastlane + Shell 打包ipa(包含憑證設定)
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://ios.league2eb.me" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>Lazy</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-10-27</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Shell/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Shell</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><h6 id="更新Xcode11-macOS-Catalina後原本的腳本就失效覺得很賭爛，光是解決該問題就花了我六小時所以果斷寫成一篇流程，跟著走絕對可以OneKeyToBuild"><a href="#更新Xcode11-macOS-Catalina後原本的腳本就失效覺得很賭爛，光是解決該問題就花了我六小時所以果斷寫成一篇流程，跟著走絕對可以OneKeyToBuild" class="headerlink" title="更新Xcode11 + macOS Catalina後原本的腳本就失效覺得很賭爛，光是解決該問題就花了我六小時所以果斷寫成一篇流程，跟著走絕對可以OneKeyToBuild !"></a>更新Xcode11 + macOS Catalina後原本的腳本就失效覺得很賭爛，光是解決該問題就花了我六小時所以果斷寫成一篇流程，跟著走絕對可以OneKeyToBuild !</h6><h6 id="備註：OneKeyToBuild源自於OneKeyToWin外掛，有興趣自己Google"><a href="#備註：OneKeyToBuild源自於OneKeyToWin外掛，有興趣自己Google" class="headerlink" title="備註：OneKeyToBuild源自於OneKeyToWin外掛，有興趣自己Google"></a>備註：<code>OneKeyToBuild</code>源自於<code>OneKeyToWin</code>外掛，有興趣自己Google</h6><hr>
+<h3 id="安裝Fastlane"><a href="#安裝Fastlane" class="headerlink" title="安裝Fastlane"></a>安裝Fastlane</h3><ul>
+<li>先打開終端機(別覺得我說廢話，我曾經就是不知道網路上這些指令要在哪裡下)</li>
+<li>安裝xcode-select</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用homebrew，安裝Fastlane<ul>
+<li>沒有homebrew？<a href="https://brew.sh/index_zh-tw" target="_blank" rel="noopener">安裝</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew cask install fastlane</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="先產生Certificate-Signing-Request"><a href="#先產生Certificate-Signing-Request" class="headerlink" title="先產生Certificate Signing Request"></a>先產生Certificate Signing Request</h3><ul>
+<li>打開mac裡面的鑰匙圈</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/lbGYHBs.png" alt></fancybox></p>
+<ul>
+<li>選擇製作本地要求憑證</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/nTrCvpq.png" alt></fancybox></p>
+<ul>
+<li>選擇儲存到磁碟，並且輸入email與名稱，認真可以隨便打</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/t5saJ4S.png" alt></fancybox></p>
+<ul>
+<li>儲存到桌面或者任何地方，用完可以刪除不刪除也可以(未來搞不好又用到，例如申請推播)</li>
+<li>長這樣</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/88ou18u.png" alt></fancybox></p>
+<h3 id="憑證設定-這邊以正式發佈證書來做為範例"><a href="#憑證設定-這邊以正式發佈證書來做為範例" class="headerlink" title="憑證設定(這邊以正式發佈證書來做為範例)"></a>憑證設定(這邊以正式發佈證書來做為範例)</h3><ul>
+<li>去開發者帳號後台選擇<code>Certificates, Identifiers &amp; Profile</code></li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/yg5LKdK.png" alt></fancybox></p>
+<ul>
+<li>點選加號來新增開發者證書</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/m2uNIl6.png" alt></fancybox></p>
+<ul>
+<li>選擇Apple Distribution後點選右上角Continue<ul>
+<li>這邊特別說明一下從Xcode11之後只需要下載Apple Distribution or Apple Development就可以簽署所有平台應用包刮MacOS iPadOS</li>
+</ul>
+</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/OciyTqt.png" alt></fancybox></p>
+<ul>
+<li>點擊Choose File後找到已經製作好的<code>Certificate Signing Request</code></li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/ui1gJOM.png" alt></fancybox></p>
+<ul>
+<li>好，我就當做你現在不知道要選擇哪個檔案那就看圖，有沒有覺得剛剛才看過？</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/88ou18u.png" alt></fancybox></p>
+<ul>
+<li>選完之後點擊點選右上角Continue後會出現這個畫面，再點擊下載</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/kmBDrNa.png" alt></fancybox></p>
+<ul>
+<li>點兩下加入到Mac的鑰匙圈</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/xtYCtqR.png" alt></fancybox></p>
+<h3 id="新增一個App-Identifiers"><a href="#新增一個App-Identifiers" class="headerlink" title="新增一個App Identifiers"></a>新增一個App Identifiers</h3><ul>
+<li>點擊藍色 + 新增一個應用ID</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/xAWDYaD.png" alt></fancybox></p>
+<ul>
+<li>選擇 App IDs</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/V9B6L8V.png" alt></fancybox></p>
+<ul>
+<li>填寫應用資訊</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/zaAlcC2.png" alt></fancybox></p>
+<h3 id="設定發佈憑證"><a href="#設定發佈憑證" class="headerlink" title="設定發佈憑證"></a>設定發佈憑證</h3><ul>
+<li><p>點擊左邊Profile並點擊藍色＋進行憑證新增</p>
+<p><fancybox><img src="https://i.imgur.com/2YCRV3n.png" alt></fancybox></p>
+</li>
+<li><p>選擇App Store 後點擊右上角Continue</p>
+</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/itJxMJf.png" alt></fancybox></p>
+<ul>
+<li>選擇上一個環節所建立好的App Identifiers，並點擊右上角Continue</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/vy0rbIh.png" alt></fancybox></p>
+<ul>
+<li>如果沒有意外你應該只有一個選項</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/E3ankrt.png" alt></fancybox></p>
+<ul>
+<li>設定描述檔的名稱<ul>
+<li>我會這樣寫HelloMyDemo_Release</li>
+</ul>
+</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/dE0DE6e.png" alt></fancybox></p>
+<ul>
+<li><p>下載描述檔，然後建議把該描述檔放到你的專案資料夾裡面</p>
+<ul>
+<li><p>為什麼？好管理阿不然你一百個應用一百個描述檔你檔案會很難找</p>
+</li>
+<li><p>懂得分類的是身為工程師的基本技能</p>
+<p><fancybox><img src="https://i.imgur.com/OOAOZI6.png" alt></fancybox></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Xcode內設定"><a href="#Xcode內設定" class="headerlink" title="Xcode內設定"></a>Xcode內設定</h3><ul>
+<li><p>選擇Signing &amp; Capabilities</p>
+<ul>
+<li>選擇Release(看箭頭)</li>
+<li>取消自動簽署(不要問為什麼，你會怕)<br><fancybox><img src="https://i.imgur.com/bk2BxNe.png" alt></fancybox></li>
+</ul>
+</li>
+<li><p>import上一個環節建立的描述檔案</p>
+</li>
+</ul>
+<p><fancybox><img src="https://i.imgur.com/lGspZrQ.png" alt></fancybox></p>
+<h3 id="新增打包ReleaseExportOptions-plist"><a href="#新增打包ReleaseExportOptions-plist" class="headerlink" title="新增打包ReleaseExportOptions.plist"></a>新增打包ReleaseExportOptions.plist</h3><ul>
+<li>打開文字編輯器或者Sublime然後把下面的Code貼上<ul>
+<li>修完畢後把該檔案儲存在專案資料夾內</li>
+<li>命名為<code>ReleaseExportOptions.plist</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>compileBitcode<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>destination<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>export<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>method<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>Release<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>provisioningProfiles<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">key</span>&gt;</span>應用BundleID ex: com.xx.sample<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">string</span>&gt;</span>描述檔名稱就好，後面的mobileprovision不用<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>signingCertificate<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>看鑰匙圈裡面憑證的名稱，整個複製上來 ex: Apple Distribution: 你的名稱 (1234567890)<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>signingStyle<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>manual<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>stripSwiftSymbols<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>teamID<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>跟上面的1234567890一樣<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>thinning<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>&amp;lt;none&amp;gt;<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="新增打包腳本"><a href="#新增打包腳本" class="headerlink" title="新增打包腳本"></a>新增打包腳本</h3><ul>
+<li>打開文字編輯器或者Sublime然後把下面的Code貼上<ul>
+<li><a href="https://tinyurl.com/y3o6q7wj" target="_blank" rel="noopener">申請專用密碼</a></li>
+<li>修改下面內容<ul>
+<li>帳號</li>
+<li>專用密碼</li>
+<li>scheme</li>
+</ul>
+</li>
+<li>修完畢後把該檔案儲存在專案資料夾內</li>
+<li>命名為<code>Release.sh</code></li>
+<li>打開終端機cd到專案資料夾</li>
+<li>指令 <code>chmod +x Release.sh</code> (打開檔案權限)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">設置超時</span></span><br><span class="line">export FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT=120</span><br><span class="line"><span class="meta">#</span><span class="bash">APP Store帳號</span></span><br><span class="line">A="example@gmail.com"</span><br><span class="line"><span class="meta">#</span><span class="bash">專用密碼密碼</span></span><br><span class="line">P="這個密碼是專用密碼，不是開發者帳號的密碼"</span><br><span class="line"><span class="meta">#</span><span class="bash">計時</span></span><br><span class="line">SECONDS=0</span><br><span class="line"><span class="meta">#</span><span class="bash">假設腳本放置在與項目相同的路徑下</span></span><br><span class="line">project_path=$(pwd)</span><br><span class="line"><span class="meta">#</span><span class="bash">取當前時間字符串添加到文件結尾</span></span><br><span class="line">now=$(date +"%Y_%m_%d_%H_%M_%S")</span><br><span class="line"><span class="meta">#</span><span class="bash">指定項目的scheme名稱</span></span><br><span class="line">scheme="scheme名稱 ex : HelloMyDemo"</span><br><span class="line"><span class="meta">#</span><span class="bash">指定要打包的配置名</span></span><br><span class="line"><span class="meta">#</span><span class="bash">測試環境測試包 configuration=<span class="string">"Debug"</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash">正式環境測試包 configuration=<span class="string">"Release"</span></span></span><br><span class="line">configuration="Release"</span><br><span class="line"><span class="meta">#</span><span class="bash">指定打包所使用的輸出方式，目前支持app-store, package, ad-hoc, enterprise, development, 和developer-id，即xcodebuild的method參數</span></span><br><span class="line">export_method='app-store'</span><br><span class="line"><span class="meta">#</span><span class="bash">指定項目地址</span></span><br><span class="line">workspace_path="$project_path/$&#123;scheme&#125;.xcworkspace"</span><br><span class="line"><span class="meta">#</span><span class="bash">指定輸出路徑</span></span><br><span class="line">output_path="$project_path/build/"</span><br><span class="line"><span class="meta">#</span><span class="bash">指定輸出歸檔文件地址</span></span><br><span class="line">archive_path="$output_path/$&#123;scheme&#125;_$&#123;now&#125;.xcarchive"</span><br><span class="line"><span class="meta">#</span><span class="bash">指定輸出ipa地址</span></span><br><span class="line">ipa_path="$output_path/$&#123;scheme&#125;_$&#123;now&#125;.ipa"</span><br><span class="line"><span class="meta">#</span><span class="bash">指定輸出ipa名稱</span></span><br><span class="line">ipa_name="$&#123;scheme&#125;_$&#123;now&#125;.ipa"</span><br><span class="line"><span class="meta">#</span><span class="bash">獲取執行命令時的commit message</span></span><br><span class="line">commit_msg="$1"</span><br><span class="line"><span class="meta">#</span><span class="bash">同意訪問鑰匙圈</span></span><br><span class="line">allowPV="-allowProvisioningUpdates"</span><br><span class="line"><span class="meta">#</span><span class="bash">ApplicationLoader路徑</span></span><br><span class="line">altoolPath="/Applications/Xcode.app/Contents/Applications/Application Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Versions/A/Support/altool"</span><br><span class="line"><span class="meta">#</span><span class="bash">打包的plist設定</span></span><br><span class="line">exoplist="$project_path/ReleaseExportOptions.plist"</span><br><span class="line"><span class="meta">#</span><span class="bash">輸出設定的變量值</span></span><br><span class="line">echo "===workspace path: $&#123;workspace_path&#125;==="</span><br><span class="line">echo "===archive path: $&#123;archive_path&#125;==="</span><br><span class="line">echo "===ipa path: $&#123;ipa_path&#125;==="</span><br><span class="line">echo "===export method: $&#123;export_method&#125;==="</span><br><span class="line">echo "===commit msg: $1==="</span><br><span class="line"><span class="meta">#</span><span class="bash">先清空前一次build</span></span><br><span class="line">fastlane gym --silent true --workspace $&#123;workspace_path&#125; --scheme $&#123;scheme&#125; --clean --configuration $&#123;configuration&#125; --archive_path $&#123;archive_path&#125; --export_method $&#123;export_method&#125; --output_directory $&#123;output_path &#125; --output_name $&#123;ipa_name&#125; --export_xcargs $&#123;allowPV&#125; --export_options $&#123;exoplist&#125;</span><br><span class="line"><span class="meta">#</span><span class="bash">上傳到iTunes Connect</span></span><br><span class="line">"$altoolPath" --upload-app -f $&#123;ipa_path&#125; -t ios -u "$A" -p "$P"</span><br><span class="line">osascript -e 'display notification "上傳完成"'</span><br><span class="line"><span class="meta">#</span><span class="bash">輸出總用時</span></span><br><span class="line">echo "===Finished. Total time: $&#123;SECONDS&#125;s==="</span><br></pre></td></tr></table></figure>
+
+<h3 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h3><ul>
+<li>cd 到專案目錄底下</li>
+<li>指令 <code>./Release.sh</code></li>
+<li>這個腳本有替您自動上傳到開發者帳號裡面的App Store Connect，但前提是你要先創好應用…(廢話)</li>
+</ul>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-04T18:22:39+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新於 2020年6月4日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-fb" title="Facebook" rel="external nofollow noopener noreferrer"
+          
+          href="https://www.facebook.com/sharer/sharer.php?u=https://ios.league2eb.me/posts/4611262f/&title=Fastlane + Shell 打包ipa(包含憑證設定) | LazyBlog&summary="
+          
+          >
+          
+            <img src="https://image.flaticon.com/icons/png/512/124/124010.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁</h6>
+                          <h4>
+                              <a href="/posts/55188126/" rel="prev" title="Xcode 11 Application Loader 找回">
+                                
+                                    Xcode 11 Application Loader 找回
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/Xcode、iOS/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Xcode、iOS</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/posts/7eacf7f7/" rel="prev" title="使用記憶體位置進行FunctionHook">
+                                  
+                                      使用記憶體位置進行FunctionHook
+                                  
+                              </a>
+                          </h4>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;評論</h4>
+      
+      
+      
+        <section id="comments">
+          <div id="gitalk-container"></div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Fastlane + Shell 打包ipa(包含憑證設定)',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://i.imgur.com/kmSE6P0.png'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:poloa5140@gmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/League2EB?tab=repositories"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://open.spotify.com/artist/0PaQoJb70VpcofM9CA4Lfd"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目錄</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#更新Xcode11-macOS-Catalina後原本的腳本就失效覺得很賭爛，光是解決該問題就花了我六小時所以果斷寫成一篇流程，跟著走絕對可以OneKeyToBuild"><span class="toc-text">更新Xcode11 + macOS Catalina後原本的腳本就失效覺得很賭爛，光是解決該問題就花了我六小時所以果斷寫成一篇流程，跟著走絕對可以OneKeyToBuild !</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#備註：OneKeyToBuild源自於OneKeyToWin外掛，有興趣自己Google"><span class="toc-text">備註：OneKeyToBuild源自於OneKeyToWin外掛，有興趣自己Google</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安裝Fastlane"><span class="toc-text">安裝Fastlane</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#先產生Certificate-Signing-Request"><span class="toc-text">先產生Certificate Signing Request</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#憑證設定-這邊以正式發佈證書來做為範例"><span class="toc-text">憑證設定(這邊以正式發佈證書來做為範例)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新增一個App-Identifiers"><span class="toc-text">新增一個App Identifiers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#設定發佈憑證"><span class="toc-text">設定發佈憑證</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Xcode內設定"><span class="toc-text">Xcode內設定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新增打包ReleaseExportOptions-plist"><span class="toc-text">新增打包ReleaseExportOptions.plist</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新增打包腳本"><span class="toc-text">新增打包腳本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打包"><span class="toc-text">打包</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站內導航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          首頁
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章歸檔
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="/categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Docker/" href="/categories/Docker/"><div class='name'>Docker</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Jailbreak/" href="/categories/Jailbreak/"><div class='name'>Jailbreak</div><div class='badge'>(11)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Mac/" href="/categories/Mac/"><div class='name'>Mac</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Server/" href="/categories/Server/"><div class='name'>Server</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Shell/" href="/categories/Shell/"><div class='name'>Shell</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Xcode/" href="/categories/Xcode/"><div class='name'>Xcode</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/iOS/" href="/categories/iOS/"><div class='name'>iOS</div><div class='badge'>(18)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/mac/" href="/categories/mac/"><div class='name'>mac</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="/tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/CPU/" style="font-size: 14px; color: #999">CPU</a> <a href="/tags/Command/" style="font-size: 14px; color: #999">Command</a> <a href="/tags/CoreBluetooth/" style="font-size: 14px; color: #999">CoreBluetooth</a> <a href="/tags/Framework/" style="font-size: 14px; color: #999">Framework</a> <a href="/tags/Jailbreak/" style="font-size: 16.5px; color: #888">Jailbreak</a> <a href="/tags/Mac/" style="font-size: 21.5px; color: #666">Mac</a> <a href="/tags/NSArray/" style="font-size: 14px; color: #999">NSArray</a> <a href="/tags/NSURLSession/" style="font-size: 14px; color: #999">NSURLSession</a> <a href="/tags/NotificationCenter/" style="font-size: 14px; color: #999">NotificationCenter</a> <a href="/tags/Objective-C/" style="font-size: 19px; color: #777">Objective-C</a> <a href="/tags/Pods/" style="font-size: 16.5px; color: #888">Pods</a> <a href="/tags/Shell/" style="font-size: 14px; color: #999">Shell</a> <a href="/tags/Simulator/" style="font-size: 14px; color: #999">Simulator</a> <a href="/tags/String/" style="font-size: 14px; color: #999">String</a> <a href="/tags/Swift/" style="font-size: 24px; color: #555">Swift</a> <a href="/tags/UIApplication/" style="font-size: 16.5px; color: #888">UIApplication</a> <a href="/tags/UIView/" style="font-size: 16.5px; color: #888">UIView</a> <a href="/tags/UIViewController/" style="font-size: 19px; color: #777">UIViewController</a> <a href="/tags/VPN/" style="font-size: 14px; color: #999">VPN</a> <a href="/tags/Xcode/" style="font-size: 19px; color: #777">Xcode</a> <a href="/tags/Xcode、iOS/" style="font-size: 14px; color: #999">Xcode、iOS</a> <a href="/tags/ffmpeg/" style="font-size: 14px; color: #999">ffmpeg</a> <a href="/tags/iOS/" style="font-size: 21.5px; color: #666">iOS</a> <a href="/tags/mac/" style="font-size: 14px; color: #999">mac</a> <a href="/tags/oracle/" style="font-size: 19px; color: #777">oracle</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-thumbs-up fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;推薦文章</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://league2eb.github.io/posts/4611262f/" href="https://league2eb.github.io/posts/4611262f/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;Fastlane + Shell 打包ipa(包含憑證設定)
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="https://league2eb.github.io/posts/26217a84/" href="https://league2eb.github.io/posts/26217a84/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;使用SSH連接越獄手機，並且不要再打密碼
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:poloa5140@gmail.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/League2EB?tab=repositories"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://open.spotify.com/artist/0PaQoJb70VpcofM9CA4Lfd"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+</div>
+  <div>
+    
+       
+      總訪問量為
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      次
+    
+    。
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        if ('.cover') {
+          $('.cover').backstretch(
+          [""],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        } else {
+          $.backstretch(
+          [""],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: "03f82333204f52270880",
+      clientSecret: "ac7f273146189dbf7309c9c6361c60e4a1e8e524",
+      repo: "Comments",
+      owner: "League2EB",
+      admin: "League2EB",
+      
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+      
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+    gitalk.render('gitalk-container');
+  </script>
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "複製成功";
+  let COPY_FAILURE = "複製失敗";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

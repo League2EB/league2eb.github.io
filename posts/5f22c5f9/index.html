@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>製作VPN的描述檔 | LazyBlog</title>
+  
+  <meta name="keywords" content="Lazy;iOS;Objective-c;Swift">
+  
+  
+  <meta name="description" content="可以說是一個筆記本">
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="LazyBlog">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9.9/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+<link rel="alternate" href="/atom.xml" title="LazyBlog" type="application/atom+xml">
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>LazyBlog</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="https://www.facebook.com/lazy.scream.7"
+            
+            
+            id="https:www.facebook.comlazy.scream.7">
+            <i class='fab fa-facebook fa-fw'></i>&nbsp;臉書
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="https://league2eb.github.io/resume/"
+            
+              rel="nofollow"
+            
+            
+            id="https:league2eb.github.ioresume">
+            <i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          LazyBlog
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="home">
+									<i class='fas fa-home fa-fw'></i>&nbsp;首頁
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;歸檔
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="https://league2eb.github.io/resume/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="https:league2eb.github.ioresume">
+									<i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                  rel="nofollow"
+                
+                
+                id="home">
+								<i class='fas fa-home fa-fw'></i>&nbsp;首頁
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;歸檔
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://league2eb.github.io/resume/"
+                
+                  rel="nofollow"
+                
+                
+                id="https:league2eb.github.ioresume">
+								<i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/posts/5f22c5f9/">
+        製作VPN的描述檔
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://ios.league2eb.me" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>Lazy</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-04-28</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/Server/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>Server</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>需要VPN有很多種理由</p>
+<ol>
+<li>做點壞事(?)</li>
+<li>看其他國家的Netflix</li>
+<li>就是想用免費流量的國外IP來訪問所有網路內容</li>
+</ol>
+<hr>
+<h2 id="本篇注意事項"><a href="#本篇注意事項" class="headerlink" title="本篇注意事項"></a>本篇注意事項</h2><ol>
+<li>標題有[Server] 表示指令在伺服器裡頭執行</li>
+<li>標題有[Local] 表示該指令在當前的電腦裡頭的終端機執行</li>
+<li>標題有[Web] 表示這個動作會在Oracle的Dashboard操作</li>
+</ol>
+<h2 id="Local-SSH連線到你已經戳到的Oracle-Serve"><a href="#Local-SSH連線到你已經戳到的Oracle-Serve" class="headerlink" title="[Local] SSH連線到你已經戳到的Oracle Serve"></a>[Local] SSH連線到你已經戳到的Oracle Serve</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i id_rsa ubuntu@你的Oracle伺服器IP</span><br></pre></td></tr></table></figure>
+
+<h2 id="Local-同意連線，輸入yes並點按下enter"><a href="#Local-同意連線，輸入yes並點按下enter" class="headerlink" title="[Local] 同意連線，輸入yes並點按下enter"></a>[Local] 同意連線，輸入yes並點按下enter</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Warning: Identity file id_rsa not accessible: No such file or directory.</span><br><span class="line">The authenticity of host <span class="string">'127.0.0.1 (127.0.0.1)'</span> can<span class="string">'t be established.</span></span><br><span class="line"><span class="string">ECDSA key fingerprint is SHA256:UhUdslpLpVGkuwdT6VodmB3L4LkjStjXrxydr9b9NMs.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no/[fingerprint])?</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>這是成功連線畫面</strong></p>
+<p><fancybox><img src="https://i.imgur.com/L0zexWg.png" alt></fancybox></p>
+<h2 id="Server-進入Root權限模式"><a href="#Server-進入Root權限模式" class="headerlink" title="[Server] 進入Root權限模式"></a>[Server] 進入Root權限模式</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
+
+<h2 id="Server-修改密碼"><a href="#Server-修改密碼" class="headerlink" title="[Server] 修改密碼"></a>[Server] 修改密碼</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd</span><br></pre></td></tr></table></figure>
+
+<p><strong>輸入的時候不會顯示密碼</strong></p>
+<p><fancybox><img src="https://i.imgur.com/O5MN6tK.png" alt></fancybox></p>
+<h2 id="Server-修改authorized-keys內容"><a href="#Server-修改authorized-keys內容" class="headerlink" title="[Server] 修改authorized_keys內容"></a>[Server] 修改authorized_keys內容</h2><p><code>編輯authorized_keys</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~ &amp;&amp;  vi ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p><code>瘋狂按鍵盤上的d直到內容空白</code></p>
+<p><code>點擊鍵盤上的「i」進入編輯模式，左下角應該會出現insert</code></p>
+<p><fancybox><img src="https://i.imgur.com/iRU3rC2.png" alt></fancybox></p>
+<h2 id="再開一個終端機，一個畫面是Server一個畫面是Local"><a href="#再開一個終端機，一個畫面是Server一個畫面是Local" class="headerlink" title="再開一個終端機，一個畫面是Server一個畫面是Local"></a>再開一個終端機，一個畫面是Server一個畫面是Local</h2><h2 id="Local-回到電腦的終端機尋找id-rsa-pub裡頭的鑰匙並複製起來"><a href="#Local-回到電腦的終端機尋找id-rsa-pub裡頭的鑰匙並複製起來" class="headerlink" title="[Local] 回到電腦的終端機尋找id_rsa.pub裡頭的鑰匙並複製起來"></a>[Local] 回到電腦的終端機尋找id_rsa.pub裡頭的鑰匙並複製起來</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<h2 id="Server-把剛剛複製的Key貼到進入編輯模式的authorized-keys底下"><a href="#Server-把剛剛複製的Key貼到進入編輯模式的authorized-keys底下" class="headerlink" title="[Server] 把剛剛複製的Key貼到進入編輯模式的authorized_keys底下"></a>[Server] 把剛剛複製的Key貼到進入編輯模式的authorized_keys底下</h2><p><fancybox><img src="https://i.imgur.com/0Q7nZTF.png" alt></fancybox></p>
+<p><code>完成後先按一下鍵盤的ESC，然後下指令</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:wq</span><br></pre></td></tr></table></figure>
+
+<p>然後Enter<br><strong>這裡的作法是為了讓你本機電腦可以直接進入root的權限模式</strong></p>
+<h2 id="Web-開防火牆"><a href="#Web-開防火牆" class="headerlink" title="[Web] 開防火牆"></a>[Web] 開防火牆</h2><ul>
+<li>80Port = 只是為了測試使用，不爽開可以略過</li>
+<li>443Port = 未來如果有使用SSL，這裡就一起開吧</li>
+</ul>
+<p><code>運算</code> -&gt; <code>執行處理</code></p>
+<p><fancybox><img src="https://i.loli.net/2020/04/28/PzxeKYZRTQB4bfd.png" alt></fancybox></p>
+<p><code>點擊你的機器</code></p>
+<p><fancybox><img src="https://i.imgur.com/TXCgeqJ.png" alt></fancybox></p>
+<p><code>點擊公用子網路</code></p>
+<p><fancybox><img src="https://i.imgur.com/7sKtPYN.png" alt></fancybox></p>
+<p><code>點擊安全清單下的安全資訊</code></p>
+<p><fancybox><img src="https://i.imgur.com/r5H8txf.png" alt></fancybox></p>
+<p><code>點擊新增傳入規則按鈕，並新增三組，仔細看下面圖片</code></p>
+<p><fancybox><img src="https://i.imgur.com/QVHqxxx.png" alt></fancybox></p>
+<p><code>新增80Port</code></p>
+<p><fancybox><img src="https://i.imgur.com/WhO3cXJ.png" alt></fancybox></p>
+<p><code>新增4500Port</code></p>
+<p><fancybox><img src="https://i.imgur.com/KDU3Ss0.png" alt></fancybox></p>
+<p><code>新增500Port</code></p>
+<p><fancybox><img src="https://i.imgur.com/motwTKy.png" alt></fancybox></p>
+<h2 id="Server-移除-iptables、安裝ufw"><a href="#Server-移除-iptables、安裝ufw" class="headerlink" title="[Server] 移除 iptables、安裝ufw"></a>[Server] 移除 iptables、安裝ufw</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt remove iptables</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install ufw</span><br></pre></td></tr></table></figure>
+
+<h2 id="Server-使用ufw允許22、500、4500、80、443port，並且打開防火牆"><a href="#Server-使用ufw允許22、500、4500、80、443port，並且打開防火牆" class="headerlink" title="[Server] 使用ufw允許22、500、4500、80、443port，並且打開防火牆"></a>[Server] 使用ufw允許22、500、4500、80、443port，並且打開防火牆</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw allow 22</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw allow 500</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw allow 4500</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw allow 80</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw allow 443</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw <span class="built_in">enable</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Server-順手安裝nginx，然後重新啟動機器-重要"><a href="#Server-順手安裝nginx，然後重新啟動機器-重要" class="headerlink" title="[Server] 順手安裝nginx，然後重新啟動機器(重要)"></a>[Server] 順手安裝nginx，然後重新啟動機器(重要)</h2><p><strong>若沒有先安裝nginx，機器內則沒有listen 80 的程式，在local端測試時會變成closed</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install nginx</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<h2 id="Local-嘗試戳一下你的Server的80port"><a href="#Local-嘗試戳一下你的Server的80port" class="headerlink" title="[Local] 嘗試戳一下你的Server的80port"></a>[Local] 嘗試戳一下你的Server的80port</h2><p><strong>STATE應該要是open，若按照上述流程但仍然是closed表示沒有program listen 80 port</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -v -Pn -p 80 你的伺服器IP</span><br></pre></td></tr></table></figure>
+
+<h2 id="Server-檢查ufw是不是沒被關掉，沒被關掉就是成功了"><a href="#Server-檢查ufw是不是沒被關掉，沒被關掉就是成功了" class="headerlink" title="[Server]  檢查ufw是不是沒被關掉，沒被關掉就是成功了"></a>[Server]  檢查ufw是不是沒被關掉，沒被關掉就是成功了</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ufw status numbered</span><br></pre></td></tr></table></figure>
+
+<h2 id="Server-安裝Docker"><a href="#Server-安裝Docker" class="headerlink" title="[Server] 安裝Docker"></a>[Server] 安裝Docker</h2><p><code>更新一下</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+
+<p><code>安裝</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install docker.io</span><br></pre></td></tr></table></figure>
+
+<p><code>啟動</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> docker</span><br></pre></td></tr></table></figure>
+
+<h2 id="Server-建立vpn設定檔案"><a href="#Server-建立vpn設定檔案" class="headerlink" title="[Server] 建立vpn設定檔案"></a>[Server] 建立vpn設定檔案</h2><p><strong>先複習一下vi</strong></p>
+<ul>
+<li>鍵入 i 進入編輯模式</li>
+<li>esc退出編輯模式</li>
+<li>:wq儲存該次編輯 (w前面有一個:)</li>
+<li>:q!取消該次編輯</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/strongswan.conf</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>把下面的內容貼到 strongswan.conf</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">charon &#123;</span><br><span class="line">  load_modular = yes</span><br><span class="line">  plugins &#123;</span><br><span class="line">    include strongswan.d/charon/*.conf</span><br><span class="line">    attr &#123;</span><br><span class="line">    dns = 1.1.1.2, 8.8.8.8</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">include strongswan.d/*.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="Server-利用Docker跑一個-vpn-Service"><a href="#Server-利用Docker跑一個-vpn-Service" class="headerlink" title="[Server] 利用Docker跑一個 vpn Service"></a>[Server] 利用Docker跑一個 vpn Service</h2><ul>
+<li>查詢本機IP，方便複製</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl ifconfig.me</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查詢本機hostname，一樣複製用</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostname</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>替換下面的HOST、HOSTNAME欄位並且跑起來</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run --<span class="built_in">cap</span>-add=NET_ADMIN -d --name vpn-server --restart=always \</span><br><span class="line">-p 500:500/udp -p 4500:4500/udp \</span><br><span class="line">-v ~/strongswan.conf:/etc/strongswan.conf \</span><br><span class="line">-e <span class="string">"HOST=127.0.0.1"</span> -e <span class="string">"HOSTNAME=name"</span> \</span><br><span class="line">billimek/ikev2-vpn-server</span><br></pre></td></tr></table></figure>
+
+<h2 id="Server-最後一步，製作MacOS、iPhone可直接使用的描述檔案"><a href="#Server-最後一步，製作MacOS、iPhone可直接使用的描述檔案" class="headerlink" title="[Server] 最後一步，製作MacOS、iPhone可直接使用的描述檔案"></a>[Server] 最後一步，製作MacOS、iPhone可直接使用的描述檔案</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it vpn-server generate-mobileconfig &gt; ikev2-vpn.mobileconfig</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><a href="https://ios.league2eb.me/posts/e02a3e3e/">很簡單，看了就會</a></p>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-04T18:22:39+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新於 2020年6月4日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/oracle/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>oracle</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-fb" title="Facebook" rel="external nofollow noopener noreferrer"
+          
+          href="https://www.facebook.com/sharer/sharer.php?u=https://ios.league2eb.me/posts/5f22c5f9/&title=製作VPN的描述檔 | LazyBlog&summary="
+          
+          >
+          
+            <img src="https://image.flaticon.com/icons/png/512/124/124010.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁</h6>
+                          <h4>
+                              <a href="/posts/352ce7b8/" rel="prev" title="一次移除本地垃圾分支">
+                                
+                                    一次移除本地垃圾分支
+                                
+                              </a>
+                          </h4>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/posts/af9bcccd/" rel="prev" title="申請每月10T流量的免費伺服器">
+                                  
+                                      申請每月10T流量的免費伺服器
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/oracle/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> oracle</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;評論</h4>
+      
+      
+      
+        <section id="comments">
+          <div id="gitalk-container"></div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: '製作VPN的描述檔',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://i.imgur.com/kmSE6P0.png'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:poloa5140@gmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/League2EB?tab=repositories"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://open.spotify.com/artist/0PaQoJb70VpcofM9CA4Lfd"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目錄</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本篇注意事項"><span class="toc-text">本篇注意事項</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Local-SSH連線到你已經戳到的Oracle-Serve"><span class="toc-text">[Local] SSH連線到你已經戳到的Oracle Serve</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Local-同意連線，輸入yes並點按下enter"><span class="toc-text">[Local] 同意連線，輸入yes並點按下enter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-進入Root權限模式"><span class="toc-text">[Server] 進入Root權限模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-修改密碼"><span class="toc-text">[Server] 修改密碼</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-修改authorized-keys內容"><span class="toc-text">[Server] 修改authorized_keys內容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#再開一個終端機，一個畫面是Server一個畫面是Local"><span class="toc-text">再開一個終端機，一個畫面是Server一個畫面是Local</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Local-回到電腦的終端機尋找id-rsa-pub裡頭的鑰匙並複製起來"><span class="toc-text">[Local] 回到電腦的終端機尋找id_rsa.pub裡頭的鑰匙並複製起來</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-把剛剛複製的Key貼到進入編輯模式的authorized-keys底下"><span class="toc-text">[Server] 把剛剛複製的Key貼到進入編輯模式的authorized_keys底下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-開防火牆"><span class="toc-text">[Web] 開防火牆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-移除-iptables、安裝ufw"><span class="toc-text">[Server] 移除 iptables、安裝ufw</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-使用ufw允許22、500、4500、80、443port，並且打開防火牆"><span class="toc-text">[Server] 使用ufw允許22、500、4500、80、443port，並且打開防火牆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-順手安裝nginx，然後重新啟動機器-重要"><span class="toc-text">[Server] 順手安裝nginx，然後重新啟動機器(重要)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Local-嘗試戳一下你的Server的80port"><span class="toc-text">[Local] 嘗試戳一下你的Server的80port</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-檢查ufw是不是沒被關掉，沒被關掉就是成功了"><span class="toc-text">[Server]  檢查ufw是不是沒被關掉，沒被關掉就是成功了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-安裝Docker"><span class="toc-text">[Server] 安裝Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-建立vpn設定檔案"><span class="toc-text">[Server] 建立vpn設定檔案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-利用Docker跑一個-vpn-Service"><span class="toc-text">[Server] 利用Docker跑一個 vpn Service</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-最後一步，製作MacOS、iPhone可直接使用的描述檔案"><span class="toc-text">[Server] 最後一步，製作MacOS、iPhone可直接使用的描述檔案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站內導航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          首頁
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章歸檔
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="/categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Docker/" href="/categories/Docker/"><div class='name'>Docker</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Jailbreak/" href="/categories/Jailbreak/"><div class='name'>Jailbreak</div><div class='badge'>(11)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Mac/" href="/categories/Mac/"><div class='name'>Mac</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Server/" href="/categories/Server/"><div class='name'>Server</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Shell/" href="/categories/Shell/"><div class='name'>Shell</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Xcode/" href="/categories/Xcode/"><div class='name'>Xcode</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/iOS/" href="/categories/iOS/"><div class='name'>iOS</div><div class='badge'>(18)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/mac/" href="/categories/mac/"><div class='name'>mac</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="/tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/CPU/" style="font-size: 14px; color: #999">CPU</a> <a href="/tags/Command/" style="font-size: 14px; color: #999">Command</a> <a href="/tags/CoreBluetooth/" style="font-size: 14px; color: #999">CoreBluetooth</a> <a href="/tags/Framework/" style="font-size: 14px; color: #999">Framework</a> <a href="/tags/Jailbreak/" style="font-size: 16.5px; color: #888">Jailbreak</a> <a href="/tags/Mac/" style="font-size: 21.5px; color: #666">Mac</a> <a href="/tags/NSArray/" style="font-size: 14px; color: #999">NSArray</a> <a href="/tags/NSURLSession/" style="font-size: 14px; color: #999">NSURLSession</a> <a href="/tags/NotificationCenter/" style="font-size: 14px; color: #999">NotificationCenter</a> <a href="/tags/Objective-C/" style="font-size: 19px; color: #777">Objective-C</a> <a href="/tags/Pods/" style="font-size: 16.5px; color: #888">Pods</a> <a href="/tags/Shell/" style="font-size: 14px; color: #999">Shell</a> <a href="/tags/Simulator/" style="font-size: 14px; color: #999">Simulator</a> <a href="/tags/String/" style="font-size: 14px; color: #999">String</a> <a href="/tags/Swift/" style="font-size: 24px; color: #555">Swift</a> <a href="/tags/UIApplication/" style="font-size: 16.5px; color: #888">UIApplication</a> <a href="/tags/UIView/" style="font-size: 16.5px; color: #888">UIView</a> <a href="/tags/UIViewController/" style="font-size: 19px; color: #777">UIViewController</a> <a href="/tags/VPN/" style="font-size: 14px; color: #999">VPN</a> <a href="/tags/Xcode/" style="font-size: 19px; color: #777">Xcode</a> <a href="/tags/Xcode、iOS/" style="font-size: 14px; color: #999">Xcode、iOS</a> <a href="/tags/ffmpeg/" style="font-size: 14px; color: #999">ffmpeg</a> <a href="/tags/iOS/" style="font-size: 21.5px; color: #666">iOS</a> <a href="/tags/mac/" style="font-size: 14px; color: #999">mac</a> <a href="/tags/oracle/" style="font-size: 19px; color: #777">oracle</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-thumbs-up fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;推薦文章</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://league2eb.github.io/posts/4611262f/" href="https://league2eb.github.io/posts/4611262f/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;Fastlane + Shell 打包ipa(包含憑證設定)
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="https://league2eb.github.io/posts/26217a84/" href="https://league2eb.github.io/posts/26217a84/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;使用SSH連接越獄手機，並且不要再打密碼
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:poloa5140@gmail.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/League2EB?tab=repositories"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://open.spotify.com/artist/0PaQoJb70VpcofM9CA4Lfd"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+</div>
+  <div>
+    
+       
+      總訪問量為
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      次
+    
+    。
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        if ('.cover') {
+          $('.cover').backstretch(
+          [""],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        } else {
+          $.backstretch(
+          [""],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: "03f82333204f52270880",
+      clientSecret: "ac7f273146189dbf7309c9c6361c60e4a1e8e524",
+      repo: "Comments",
+      owner: "League2EB",
+      admin: "League2EB",
+      
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+      
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+    gitalk.render('gitalk-container');
+  </script>
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "複製成功";
+  let COPY_FAILURE = "複製失敗";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

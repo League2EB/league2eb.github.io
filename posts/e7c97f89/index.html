@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>ble+心跳帶粗略不負責任亂寫的...流程 | LazyBlog</title>
+  
+  <meta name="keywords" content="Lazy;iOS;Objective-c;Swift">
+  
+  
+  <meta name="description" content="可以說是一個筆記本">
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="LazyBlog">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9.9/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+<link rel="alternate" href="/atom.xml" title="LazyBlog" type="application/atom+xml">
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>LazyBlog</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="https://www.facebook.com/lazy.scream.7"
+            
+            
+            id="https:www.facebook.comlazy.scream.7">
+            <i class='fab fa-facebook fa-fw'></i>&nbsp;臉書
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="https://league2eb.github.io/resume/"
+            
+              rel="nofollow"
+            
+            
+            id="https:league2eb.github.ioresume">
+            <i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          LazyBlog
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="home">
+									<i class='fas fa-home fa-fw'></i>&nbsp;首頁
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;歸檔
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="https://league2eb.github.io/resume/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="https:league2eb.github.ioresume">
+									<i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                  rel="nofollow"
+                
+                
+                id="home">
+								<i class='fas fa-home fa-fw'></i>&nbsp;首頁
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;歸檔
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://league2eb.github.io/resume/"
+                
+                  rel="nofollow"
+                
+                
+                id="https:league2eb.github.ioresume">
+								<i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/posts/e7c97f89/">
+        ble+心跳帶粗略不負責任亂寫的...流程
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://ios.league2eb.me" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>Lazy</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-09-16</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/iOS/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>iOS</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <p>1.匯入CoreBluetooth</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> CoreBluetooth</span><br></pre></td></tr></table></figure>
+
+<p>2.建立結構與宣告需要物件與參數</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">DiscoveredItem</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*設備*/</span></span><br><span class="line">    <span class="keyword">var</span> peripheral: <span class="type">CBPeripheral!</span></span><br><span class="line">    <span class="comment">/*訊號強弱*/</span></span><br><span class="line">    <span class="keyword">var</span> lastRSSI = </span><br><span class="line">    <span class="comment">/*最後一次發現時間*/</span></span><br><span class="line">    <span class="keyword">var</span> lastSeenDate: <span class="type">Date!</span></span><br><span class="line">    <span class="comment">/*直接初始*/</span></span><br><span class="line">    <span class="keyword">init</span>(newPeripheral:<span class="type">CBPeripheral</span>, <span class="type">RSSI</span>:<span class="type">Int</span>) &#123;</span><br><span class="line">        peripheral = newPeripheral  </span><br><span class="line">        lastRSSI = <span class="type">RSSI</span></span><br><span class="line">        lastSeenDate = <span class="type">Date</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.於class中加入代理，並且宣告cantralManager(這邊使用TableView來顯示資料)</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewController</span>:<span class="title">UIViewController</span>,<span class="title">CBCentralManagerDelegate</span>,<span class="title">UITableViewDelegate</span>,<span class="title">UITableViewDataSource</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*宣告cantralManager*/</span></span><br><span class="line">    <span class="keyword">var</span> cantralManager:<span class="type">CBCentralManager?</span></span><br><span class="line">    <span class="comment">/*宣告一個字典，這邊的Value為上面的結構型態*/</span></span><br><span class="line">    <span class="keyword">var</span> allItems = [<span class="type">String</span>:<span class="type">DiscoveredItem</span>]()</span><br><span class="line">    <span class="comment">/*宣告即將要搜尋的設備，這邊我們使用的是速度踏頻器、心跳帶作為範例*/</span></span><br><span class="line">    <span class="keyword">let</span> <span class="type">CYCLING_SPEED_AND_CADENCE_SERVICE_UUID</span>:<span class="type">CBUUID</span> = <span class="type">CBUUID</span>(string:<span class="string">"1816"</span>)</span><br><span class="line">    <span class="keyword">let</span> <span class="type">HR_SERVICE_UUID</span>:<span class="type">CBUUID</span> = <span class="type">CBUUID</span>(string:<span class="string">"180D"</span>)</span><br><span class="line">    <span class="comment">/*宣告心跳帶服務中的特徵，基本有3三個。*/</span> </span><br><span class="line">        <span class="comment">//可以參考：https://goo.gl/Iyr31u</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="type">HR_CHARACTERISTIC_UUID</span>:<span class="type">CBUUID</span> = <span class="type">CBUUID</span>(string:<span class="string">"2A37"</span>)</span><br><span class="line">    <span class="comment">/*宣告心跳帶的特徵並把初始數值指定為nil*/</span></span><br><span class="line">    <span class="keyword">var</span> <span class="type">HR_Characteristic</span>:<span class="type">CBCharacteristic?</span> = <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4.於ViewDidLoad把cantralManage加入到主執行緒</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">    centralManager = <span class="type">CBCentralManager</span>(delegate: <span class="keyword">self</span>, queue: <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>5.偵測Centrel的狀態<br>變數centralState拿來儲存狀態</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">centralManagerDidUpdateState</span> <span class="params">(<span class="number">_</span> central: CBCentralManager)</span></span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> central.state == .powerdOn <span class="keyword">else</span> &#123; </span><br><span class="line">            <span class="keyword">let</span> centralState = central.state.rawValue</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> centralState = central.state.rawValue</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"目前狀態為\(centralState)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>6.設定Scan，並啟動 (看需求決定，可以在ViewDidLoad或者一個按鈕中)<br>如果你還看不懂下面在幹嘛，你就複製然後寫成一個方法在ViewDidLoad呼叫</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*宣告將被搜尋的Service的UUID並加入一個陣列中*/</span></span><br><span class="line"><span class="keyword">let</span> services = [<span class="type">CYCLING_SPEED_AND_CADENCE_SERVICE_UUID</span>,<span class="type">HR_SERVICE_UUID</span>]<span class="comment">/*這兩個已經宣告並指定在上面了...*/</span></span><br><span class="line"><span class="comment">/*AllowDuplicatesKey的意思是若有一樣的設備就區分開回傳，true是為了避免重複*/</span></span><br><span class="line"><span class="keyword">let</span> options = [<span class="type">CBCentralManagerScanOptionAllowDuplicatesKey</span>:<span class="literal">true</span>]</span><br><span class="line"><span class="comment">/*若withServices的參數給予nil則表示所有設備都掃描，但會比較耗電、慢。建議要有指定*/</span></span><br><span class="line">centralManager?.scanForPeripherals(withServices: services, options: options)</span><br><span class="line"><span class="comment">/*當開始搜尋設備的時候，不會有任何動作。但如果有設備被搜尋到了就會觸發didDiscoverperipheral這個代理(第9步)*/</span></span><br></pre></td></tr></table></figure>
+
+<p>7.當有設備被搜尋到的時候會觸發的方法，並有peripheral(設備)、advertisementData(設備參數)、訊號強弱等三個參數</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">centralManager</span><span class="params">(<span class="number">_</span> central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : <span class="keyword">Any</span>], rssi RSSI: NSNumber)</span></span> &#123;</span><br><span class="line">    <span class="comment">/*把搜尋到的設備內容丟進existItem常數中*/</span></span><br><span class="line">    <span class="keyword">let</span> existItem = allItems[peripheral.identifier.uuidString]</span><br><span class="line">    <span class="comment">/*繼續搜尋並且把新的設備加入到newItem常數中，這邊的newPeripheral、RSSI為DiscoveredItem初始化會呼叫的物件*/</span></span><br><span class="line">    <span class="keyword">let</span> newItem = <span class="type">DiscoveredItem</span>(newPeripheral: peripheral, <span class="type">RSSI</span>: <span class="type">Int</span>(<span class="type">RSSI</span>))</span><br><span class="line">    <span class="comment">/*當繼續搜尋後有新設備，就把上面這個newItem加到allItems這個全域變數中*/</span></span><br><span class="line">    allItems[peripheral.identifier.uuidString] = newItem</span><br><span class="line">    <span class="comment">/*宣告一個日期等等會使用*/</span></span><br><span class="line">    <span class="keyword">let</span> now = <span class="type">Date</span>()</span><br><span class="line">    <span class="comment">/*宣告一個變數用來儲存上一次刷新時間用*/</span></span><br><span class="line">    <span class="keyword">var</span> lastReloadDate: <span class="type">Date?</span></span><br><span class="line">    <span class="comment">/*判斷，假設沒有新的設備、上次刷新時間不存在、距離上次刷新已經超過2秒，就把上次刷新時間等於現在時間並且做一次刷新列表*/</span></span><br><span class="line">    <span class="keyword">if</span> existItem == <span class="literal">nil</span> || lastReloadDate == <span class="literal">nil</span> || now.timeIntervalSince(lastReloadDate!) &gt; <span class="number">2.0</span> &#123;</span><br><span class="line">            lastReloadDate = now</span><br><span class="line">            tableView.reloadData()</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>8.創建與設備連結的方法</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*這個方法有帶了一個參數型態為IndexPath*/</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">startConnect</span><span class="params">(indexPatch:IndexPath)</span></span> &#123;</span><br><span class="line"><span class="comment">/*把搜尋到的設備ID存到型態為allKeys的陣列中*/</span></span><br><span class="line"><span class="keyword">let</span> allKeys = <span class="type">Array</span>(allItems.keys)</span><br><span class="line"><span class="comment">/*把選擇到的設備編號丟到常數targerKey中*/</span></span><br><span class="line"><span class="keyword">let</span> targerKey = allKeys[indexPatch.row]</span><br><span class="line"><span class="comment">/*再把這個targerKey中的參數丟到targetItem常數中*/</span></span><br><span class="line"><span class="keyword">let</span> targetItem = allItems[targerKey]</span><br><span class="line"><span class="comment">/*最後就是與設備連結*/</span></span><br><span class="line">centralManager?.connect(targetItem!.peripheral, options: <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>9.觸發與設備連結，這邊我們使用的是TableView的accessoryButtonTap，當然你也可以寫在didSelectRowAtIndexPath中。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">tableView</span><span class="params">(<span class="number">_</span> tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath)</span></span> &#123;</span><br><span class="line">    <span class="comment">/*呼叫*/</span></span><br><span class="line">    startConnect(indexPatch: indexPath)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>10.第9步按下accessoryButton後便會觸發didConnect peripheral這個代理</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">centralManager</span><span class="params">(<span class="number">_</span> central: CBCentralManager, didConnect peripheral: CBPeripheral)</span></span> &#123;</span><br><span class="line">     <span class="comment">/*把這個設備的名字給存起來，加以辨識*/</span></span><br><span class="line">     <span class="keyword">let</span> name = peripheral.name ?? <span class="string">"UnKnow"</span></span><br><span class="line">     <span class="comment">/*完成連結後還有事情要做，所以把自己添加給設備的代理*/</span></span><br><span class="line">     peripheral.delegate = <span class="keyword">self</span></span><br><span class="line">     <span class="comment">/*一定要執行"discoverService"功能去尋找可用的Service*/</span></span><br><span class="line">     peripheral.discoverServices(<span class="literal">nil</span>)</span><br><span class="line">     <span class="comment">/*此時是停止搜尋的最佳時機*/</span></span><br><span class="line">     centralManager?.stopScan()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>10.執行peripheral.discoverServices(nil)後，便會觸發didDiscoverServices的代理</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">peripheral</span><span class="params">(<span class="number">_</span> peripheral: CBPeripheral, didDiscoverServices error: Error?)</span></span> &#123;</span><br><span class="line">    <span class="comment">/*在連線之後嘗試把這個設備有的Services給印出來*/</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"搜尋服務已經完成，共有\(peripheral.services)"</span>)</span><br><span class="line">    <span class="comment">/*如果有錯誤就執行return上的程式碼*/</span></span><br><span class="line">    <span class="keyword">guard</span> error == <span class="literal">nil</span> <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">/*停止連線*/</span></span><br><span class="line">        centralManager?.cancelPeripheralConnection(peripheral)</span><br><span class="line">        <span class="comment">/*繼續搜尋設備*/</span></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125; <span class="comment">/*若沒有錯誤就執行以下*/</span></span><br><span class="line">    <span class="comment">/*使用for in 迴圈把設備的Services取出，這邊的service型態為CBService*/</span></span><br><span class="line">        <span class="keyword">for</span> service <span class="keyword">in</span> peripheral.services ?? [] &#123;</span><br><span class="line">            <span class="comment">/*判斷uuid是否相同，這邊就以心跳帶來執行*/</span></span><br><span class="line">            <span class="keyword">if</span> service.uuid == <span class="type">HR_SERVICE_UUID</span> &#123;</span><br><span class="line">                <span class="comment">/*啟動discoverCharacteristics來觸發代理*/</span></span><br><span class="line">                peripheral.discoverCharacteristics(<span class="literal">nil</span>, <span class="keyword">for</span>: service)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>11.執行peripheral.discoverCharacteristics(nil, for: service)後，便會觸發didDiscoverCharacteristicsFor service這個代理</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">guard</span> error == <span class="literal">nil</span> <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span> characteristic <span class="keyword">in</span> service.characteristic ?? [] &#123;</span><br><span class="line">        <span class="comment">/*uuid相同...*/</span>        </span><br><span class="line">    <span class="keyword">if</span> (characteristic.uuid == <span class="type">HR_CHARACTERISTIC_UUID</span>) &#123;</span><br><span class="line">        <span class="comment">/*註冊通知，一旦有新的數據就把數據給傳入。*/</span></span><br><span class="line">        peripheral.setNotifyValue(<span class="literal">true</span>, <span class="keyword">for</span>: characteristic)</span><br><span class="line">        <span class="comment">/*把For迴圈宣告的變數「characteristic」丟進上面宣告型態為CBCharacteristic的HR_Characteristic*/</span></span><br><span class="line">        <span class="type">HR_Characteristic</span> = characteristic</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>12.command+n建立一個新的Swift File 命名為「BinaryConvert」並加入以下程式碼</p>
+<p>/<em>這是一個Uint8的擴充</em>/</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">UInt8</span></span></span><br><span class="line"><span class="class"></span>&#123;   </span><br><span class="line">    <span class="comment">/*這是一個回傳布林陣列的方法，主要功能是把Uint8的值轉成Bit Array*/</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">toBitArray</span><span class="params">()</span></span> -&gt; [<span class="type">Bool</span>]</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> <span class="type">Result</span>:[<span class="type">Bool</span>] = []   </span><br><span class="line">        <span class="type">Result</span>.append(((<span class="keyword">self</span>) &amp; <span class="number">0x01</span>) == <span class="number">1</span>);</span><br><span class="line">        <span class="type">Result</span>.append(((<span class="keyword">self</span> &gt;&gt; <span class="number">1</span>) &amp; <span class="number">0x01</span>) == <span class="number">1</span>)</span><br><span class="line">        <span class="type">Result</span>.append(((<span class="keyword">self</span> &gt;&gt; <span class="number">2</span>) &amp; <span class="number">0x01</span>) == <span class="number">1</span>)</span><br><span class="line">        <span class="type">Result</span>.append(((<span class="keyword">self</span> &gt;&gt; <span class="number">3</span>) &amp; <span class="number">0x01</span>) == <span class="number">1</span>)</span><br><span class="line">        <span class="type">Result</span>.append(((<span class="keyword">self</span> &gt;&gt; <span class="number">4</span>) &amp; <span class="number">0x01</span>) == <span class="number">1</span>)</span><br><span class="line">        <span class="type">Result</span>.append(((<span class="keyword">self</span> &gt;&gt; <span class="number">5</span>) &amp; <span class="number">0x01</span>) == <span class="number">1</span>)</span><br><span class="line">        <span class="type">Result</span>.append(((<span class="keyword">self</span> &gt;&gt; <span class="number">6</span>) &amp; <span class="number">0x01</span>) == <span class="number">1</span>)</span><br><span class="line">        <span class="type">Result</span>.append(((<span class="keyword">self</span> &gt;&gt; <span class="number">7</span>) &amp; <span class="number">0x01</span>) == <span class="number">1</span>)   </span><br><span class="line">        <span class="keyword">return</span> <span class="type">Result</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>13.第11步中，註冊了一數據通知，只要有更新就把數值傳入並且呼叫didUpdateValueFor characteristic這個Delegate</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">peripheral</span><span class="params">(<span class="number">_</span> peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?)</span></span> &#123;</span><br><span class="line">    <span class="comment">/*把characteristic中的value拿來作為Optional Binding解包*/</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> value = characteristic.value &#123;</span><br><span class="line">    <span class="comment">/*此時，HR_Characteristic為16位元的字符。並判斷兩者是否相等...*/</span></span><br><span class="line">        <span class="keyword">if</span> (characteristic == <span class="type">HR_Characteristic</span>) &#123;</span><br><span class="line">            <span class="comment">/*以下為解碼編程，這邊的toBitArray為第13步中的方法，他的陣列中總共有8個。規範中，拿取心跳就是第0個*/</span></span><br><span class="line">            <span class="keyword">let</span> <span class="type">HRFlag</span> = value[<span class="number">0</span>].toBitArray()[<span class="number">0</span>]</span><br><span class="line">            <span class="comment">/*這邊判斷就要看你的設備是支援UInt16還是Uint8*/</span></span><br><span class="line">            <span class="keyword">if</span> <span class="type">HRFlag</span> == <span class="literal">true</span> &#123;</span><br><span class="line">                    <span class="keyword">let</span> hr = binaryToType([value[<span class="number">1</span>],value[<span class="number">2</span>]], <span class="type">UInt16</span>.<span class="keyword">self</span>)</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">"UInt16...\(hr)"</span>)</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">let</span> hr = binaryToType([value[<span class="number">1</span>]], <span class="type">UInt8</span>.<span class="keyword">self</span>)</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">"UInt8...\(hr)"</span>)</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>※若以上的步驟都完整的執行完畢，應該個可以拿到心跳帶回報的心跳數據</p>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-06T05:01:52+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新於 2020年6月6日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Swift/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Swift</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/CoreBluetooth/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>CoreBluetooth</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-fb" title="Facebook" rel="external nofollow noopener noreferrer"
+          
+          href="https://www.facebook.com/sharer/sharer.php?u=https://ios.league2eb.me/posts/e7c97f89/&title=ble+心跳帶粗略不負責任亂寫的...流程 | LazyBlog&summary="
+          
+          >
+          
+            <img src="https://image.flaticon.com/icons/png/512/124/124010.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁</h6>
+                          <h4>
+                              <a href="/posts/85b8e459/" rel="prev" title="Swift流程控制">
+                                
+                                    Swift流程控制
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/Swift/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Swift</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/posts/3b243de0/" rel="prev" title=".p12轉.pem指令">
+                                  
+                                      .p12轉.pem指令
+                                  
+                              </a>
+                          </h4>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;評論</h4>
+      
+      
+      
+        <section id="comments">
+          <div id="gitalk-container"></div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'ble+心跳帶粗略不負責任亂寫的...流程',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://i.imgur.com/kmSE6P0.png'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:poloa5140@gmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/League2EB?tab=repositories"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://open.spotify.com/artist/0PaQoJb70VpcofM9CA4Lfd"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站內導航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          首頁
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章歸檔
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="/categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Docker/" href="/categories/Docker/"><div class='name'>Docker</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Jailbreak/" href="/categories/Jailbreak/"><div class='name'>Jailbreak</div><div class='badge'>(11)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Mac/" href="/categories/Mac/"><div class='name'>Mac</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Server/" href="/categories/Server/"><div class='name'>Server</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Shell/" href="/categories/Shell/"><div class='name'>Shell</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Xcode/" href="/categories/Xcode/"><div class='name'>Xcode</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/iOS/" href="/categories/iOS/"><div class='name'>iOS</div><div class='badge'>(18)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/mac/" href="/categories/mac/"><div class='name'>mac</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="/tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/CPU/" style="font-size: 14px; color: #999">CPU</a> <a href="/tags/Command/" style="font-size: 14px; color: #999">Command</a> <a href="/tags/CoreBluetooth/" style="font-size: 14px; color: #999">CoreBluetooth</a> <a href="/tags/Framework/" style="font-size: 14px; color: #999">Framework</a> <a href="/tags/Jailbreak/" style="font-size: 16.5px; color: #888">Jailbreak</a> <a href="/tags/Mac/" style="font-size: 21.5px; color: #666">Mac</a> <a href="/tags/NSArray/" style="font-size: 14px; color: #999">NSArray</a> <a href="/tags/NSURLSession/" style="font-size: 14px; color: #999">NSURLSession</a> <a href="/tags/NotificationCenter/" style="font-size: 14px; color: #999">NotificationCenter</a> <a href="/tags/Objective-C/" style="font-size: 19px; color: #777">Objective-C</a> <a href="/tags/Pods/" style="font-size: 16.5px; color: #888">Pods</a> <a href="/tags/Shell/" style="font-size: 14px; color: #999">Shell</a> <a href="/tags/Simulator/" style="font-size: 14px; color: #999">Simulator</a> <a href="/tags/String/" style="font-size: 14px; color: #999">String</a> <a href="/tags/Swift/" style="font-size: 24px; color: #555">Swift</a> <a href="/tags/UIApplication/" style="font-size: 16.5px; color: #888">UIApplication</a> <a href="/tags/UIView/" style="font-size: 16.5px; color: #888">UIView</a> <a href="/tags/UIViewController/" style="font-size: 19px; color: #777">UIViewController</a> <a href="/tags/VPN/" style="font-size: 14px; color: #999">VPN</a> <a href="/tags/Xcode/" style="font-size: 19px; color: #777">Xcode</a> <a href="/tags/Xcode、iOS/" style="font-size: 14px; color: #999">Xcode、iOS</a> <a href="/tags/ffmpeg/" style="font-size: 14px; color: #999">ffmpeg</a> <a href="/tags/iOS/" style="font-size: 21.5px; color: #666">iOS</a> <a href="/tags/mac/" style="font-size: 14px; color: #999">mac</a> <a href="/tags/oracle/" style="font-size: 19px; color: #777">oracle</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-thumbs-up fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;推薦文章</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://league2eb.github.io/posts/4611262f/" href="https://league2eb.github.io/posts/4611262f/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;Fastlane + Shell 打包ipa(包含憑證設定)
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="https://league2eb.github.io/posts/26217a84/" href="https://league2eb.github.io/posts/26217a84/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;使用SSH連接越獄手機，並且不要再打密碼
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:poloa5140@gmail.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/League2EB?tab=repositories"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://open.spotify.com/artist/0PaQoJb70VpcofM9CA4Lfd"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+</div>
+  <div>
+    
+       
+      總訪問量為
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      次
+    
+    。
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        if ('.cover') {
+          $('.cover').backstretch(
+          [""],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        } else {
+          $.backstretch(
+          [""],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: "03f82333204f52270880",
+      clientSecret: "ac7f273146189dbf7309c9c6361c60e4a1e8e524",
+      repo: "Comments",
+      owner: "League2EB",
+      admin: "League2EB",
+      
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+      
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+    gitalk.render('gitalk-container');
+  </script>
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "複製成功";
+  let COPY_FAILURE = "複製失敗";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>

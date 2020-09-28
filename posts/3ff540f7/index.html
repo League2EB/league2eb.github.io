@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>iOS_Cocoapods避坑製作流程 | LazyBlog</title>
+  
+  <meta name="keywords" content="Lazy;iOS;Objective-c;Swift">
+  
+  
+  <meta name="description" content="可以說是一個筆記本">
+  
+
+  
+  <link rel="alternate" href="/atom.xml" title="LazyBlog">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <!-- meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9.9/css/style.css">
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+<link rel="alternate" href="/atom.xml" title="LazyBlog" type="application/atom+xml">
+</head>
+
+<body>
+  
+  
+  <div class="cover-wrapper">
+    <cover class='cover post half'>
+      
+        
+  <h1 class='title'>LazyBlog</h1>
+
+
+  <div class="m_search">
+    <form name="searchform" class="form u-search-form">
+      <input type="text" class="input u-search-input" placeholder="" />
+      <i class="icon fas fa-search fa-fw"></i>
+    </form>
+  </div>
+
+<div class='menu navgation'>
+  <ul class='h-list'>
+    
+      
+        <li>
+          <a class="nav home" href="https://www.facebook.com/lazy.scream.7"
+            
+            
+            id="https:www.facebook.comlazy.scream.7">
+            <i class='fab fa-facebook fa-fw'></i>&nbsp;臉書
+          </a>
+        </li>
+      
+        <li>
+          <a class="nav home" href="https://league2eb.github.io/resume/"
+            
+              rel="nofollow"
+            
+            
+            id="https:league2eb.github.ioresume">
+            <i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+          </a>
+        </li>
+      
+    
+  </ul>
+</div>
+
+      
+    </cover>
+    <header class="l_header pure">
+  <div id="loading-bar-wrapper">
+    <div id="loading-bar" class="pure"></div>
+  </div>
+
+	<div class='wrapper'>
+		<div class="nav-main container container--flex">
+      <a class="logo flat-box" href='/' >
+        
+          LazyBlog
+        
+      </a>
+			<div class='menu navgation'>
+				<ul class='h-list'>
+          
+  					
+  						<li>
+								<a class="nav flat-box" href="/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="home">
+									<i class='fas fa-home fa-fw'></i>&nbsp;首頁
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="/archives/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="archives">
+									<i class='fas fa-archive fa-fw'></i>&nbsp;歸檔
+								</a>
+							</li>
+      			
+  						<li>
+								<a class="nav flat-box" href="https://league2eb.github.io/resume/"
+                  
+                    rel="nofollow"
+                  
+                  
+                  id="https:league2eb.github.ioresume">
+									<i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+								</a>
+							</li>
+      			
+      		
+				</ul>
+			</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="搜尋" />
+						<i class="icon fas fa-search fa-fw"></i>
+					</form>
+				</div>
+			
+			<ul class='switcher h-list'>
+				
+					<li class='s-search'><a class="fas fa-search fa-fw" href='javascript:void(0)'></a></li>
+				
+				<li class='s-menu'><a class="fas fa-bars fa-fw" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+
+		<div class='nav-sub container container--flex'>
+			<a class="logo flat-box"></a>
+			<ul class='switcher h-list'>
+				<li class='s-comment'><a class="flat-btn fas fa-comments fa-fw" href='javascript:void(0)'></a></li>
+        
+          <li class='s-toc'><a class="flat-btn fas fa-list fa-fw" href='javascript:void(0)'></a></li>
+        
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+    <header>
+		<nav class="menu navgation">
+      <ul>
+        
+          
+            <li>
+							<a class="nav flat-box" href="/"
+                
+                  rel="nofollow"
+                
+                
+                id="home">
+								<i class='fas fa-home fa-fw'></i>&nbsp;首頁
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="/archives/"
+                
+                  rel="nofollow"
+                
+                
+                id="archives">
+								<i class='fas fa-archive fa-fw'></i>&nbsp;歸檔
+							</a>
+            </li>
+          
+            <li>
+							<a class="nav flat-box" href="https://league2eb.github.io/resume/"
+                
+                  rel="nofollow"
+                
+                
+                id="https:league2eb.github.ioresume">
+								<i class='far fa-address-card fa-fw'></i>&nbsp;履歷
+							</a>
+            </li>
+          
+       
+      </ul>
+		</nav>
+    </header>
+	</aside>
+<script>setLoadingBarProgress(40);</script>
+
+  </div>
+
+
+  <div class="l_body">
+    <div class='body-wrapper'>
+      <div class='l_main'>
+  
+
+  <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+    
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/posts/3ff540f7/">
+        iOS_Cocoapods避坑製作流程
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://ios.league2eb.me" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>Lazy</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-12-30</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/iOS/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>iOS</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+    <section class="article typo">
+      <div class="article-entry" itemprop="articleBody">
+        <h1 id="Set-By-Set"><a href="#Set-By-Set" class="headerlink" title="Set By Set"></a>Set By Set</h1><h3 id="新增框架專案"><a href="#新增框架專案" class="headerlink" title="新增框架專案"></a>新增框架專案</h3><p>開啟終端機並且移動到你想要創立框架的位置(這邊舉例桌面)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/Desktop</span><br></pre></td></tr></table></figure>
+
+<p>建立專案</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod lib create HelloMyFramwork</span><br></pre></td></tr></table></figure>
+
+<h3 id="你將會碰到幾個問題"><a href="#你將會碰到幾個問題" class="headerlink" title="你將會碰到幾個問題"></a>你將會碰到幾個問題</h3><ul>
+<li>What platform do you want to use?? (你是為了什麼平台？)<ul>
+<li><code>[iOS / macOS]</code></li>
+</ul>
+</li>
+<li>What language do you want to use?? (你想要使用什麼語言？)<ul>
+<li><code>[Swift / ObjC]</code></li>
+</ul>
+</li>
+<li>Would you like to include a demo application with your library? (你是否想要在你的核心框架中給一個範例？)<ul>
+<li><code>[Yes / No]</code></li>
+</ul>
+</li>
+<li>Which testing frameworks will you use? (你想使用哪種測試框架來進行測試？)<ul>
+<li><code>[Quick / None]</code></li>
+</ul>
+</li>
+<li>Would you like to do view based testing?<ul>
+<li><code>[Yes / No]</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="開啟專案後刪除測試相關檔案"><a href="#開啟專案後刪除測試相關檔案" class="headerlink" title="開啟專案後刪除測試相關檔案"></a>開啟專案後刪除測試相關檔案</h2><h3 id="Pods"><a href="#Pods" class="headerlink" title="Pods"></a>Pods</h3><ul>
+<li><p>明明已經沒有選擇測試相關選項但仍然有出現測試檔案</p>
+<ul>
+<li>原因未知</li>
+</ul>
+</li>
+<li><p>刪除框架專案中的「測試」目標與資料夾</p>
+<p>  <fancybox><img src="https://i.loli.net/2020/01/03/uDyEPRqCnz39bwA.png" alt></fancybox></p>
+</li>
+</ul>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><ul>
+<li>打開Example中的podfile</li>
+<li>刪除測試的Target (圈起來的通通拿掉)</li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2019/12/31/3CNRZf19KrHPtWI.png" alt></fancybox></p>
+<ul>
+<li>選擇Example專案並刪除測試Target</li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2019/12/31/UpaVkrbjAx8542T.png" alt></fancybox></p>
+<ul>
+<li>刪除測試資料夾</li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2019/12/31/Ag3Nxi5Q2PfrwEm.png" alt></fancybox></p>
+<ul>
+<li>刪除Example中Pods資料夾底下與測試相關的檔案</li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2019/12/31/ZsxXofhqzSBniH7.png" alt></fancybox></p>
+<ul>
+<li>刪除Example中Frameworks資料夾底下的測試框架</li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2019/12/31/2PQZ7Fqcg3Nmefw.png" alt></fancybox></p>
+<p>好，終於刪除所有測試的檔案了可以去泡杯咖啡抽跟菸喘一下 (累.PNG)</p>
+<h3 id="編輯podspec"><a href="#編輯podspec" class="headerlink" title="編輯podspec"></a>編輯podspec</h3><ul>
+<li>修改框架支援OS版本</li>
+<li>新增指令框架使用Swift語言</li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2020/01/03/TOVeJMus5ShCUco.png" alt></fancybox></p>
+<h3 id="關閉Xcode-並且-pod-install"><a href="#關閉Xcode-並且-pod-install" class="headerlink" title="關閉Xcode 並且 pod install"></a>關閉Xcode 並且 pod install</h3><p><strong>每次有新增Flle或者XIB檔案等等操作都需要pod insasll</strong></p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod install</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件介紹"><a href="#文件介紹" class="headerlink" title="文件介紹"></a>文件介紹</h3><p><code>_Pods.xcodeproj</code><br>這是cocoapods的專案檔，裡面包含自己定義的框架<br><fancybox><fancybox><img src="https://i.loli.net/2019/12/30/e1UVhBImSKcL2gx.png" alt></fancybox></fancybox></p>
+<p><code>podspec</code><br>你可以把它想像成「描述框架文件」主要說明作者、版本、使用許可、倉庫地址甚至是支援版本<br><fancybox><fancybox><img src="https://i.loli.net/2019/12/30/CpbQPYqxT5FJwut.png" alt></fancybox></fancybox></p>
+<p><code>Example</code><br>範例專案，這個就不用多解釋了<br><fancybox><fancybox><img src="https://i.loli.net/2019/12/30/6SbEakX9urJIKsx.png" alt></fancybox></fancybox></p>
+<p><code>你建立的框架名稱資料夾</code><br>這個範例的名稱叫做「HelloMyCocoapods」<br><fancybox><fancybox><img src="https://i.loli.net/2019/12/30/ngMKCXblrHWPtEN.png" alt></fancybox></fancybox><br>這裡面基本上會包含兩個資料夾</p>
+<ul>
+<li>Assets<ul>
+<li>用來放置圖片、XIB等等資源</li>
+</ul>
+</li>
+<li>Classes<ul>
+<li>用來放置File<br><fancybox><fancybox><img src="https://i.loli.net/2019/12/30/4EbmKJBts6xYhGa.png" alt></fancybox></fancybox></li>
+</ul>
+</li>
+</ul>
+<h3 id="File"><a href="#File" class="headerlink" title="File"></a>File</h3><h4 id="從專案左側的資料夾可以看見一個很顯眼的File名叫「ReplaceMe」"><a href="#從專案左側的資料夾可以看見一個很顯眼的File名叫「ReplaceMe」" class="headerlink" title="從專案左側的資料夾可以看見一個很顯眼的File名叫「ReplaceMe」"></a>從專案左側的資料夾可以看見一個很顯眼的File名叫「ReplaceMe」</h4><p>這個命名也挺有意思，就是請你取代他<br>點開該文件發會發現空白，沒有任何說明(也可能官網有放說明…我沒看)<br>這邊有幾個狀況要特別再三說明，這些狀況我覺得其實應該大多數的網路文章都沒有仔細說明這塊<br>以下是我個人的經驗總結</p>
+<h4 id="新增資料夾"><a href="#新增資料夾" class="headerlink" title="新增資料夾"></a>新增資料夾</h4><p><strong>檔案很多，總該要有資料夾來做為分類管理</strong><br><strong>後面加入的Resopurce如果也需要資料夾分類管理，方法一樣</strong></p>
+<ul>
+<li>首先我們在我 Classes 底下建立兩個資料夾並命名為「Manager」與「Util」</li>
+<li>回到框架的專案內並建立兩個File</li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2019/12/31/x1zjlePtL5ouJVD.png" alt></fancybox></p>
+<h4 id="新增File"><a href="#新增File" class="headerlink" title="新增File"></a>新增File</h4><p>在Pods底下直接cmd+N來新建立兩個.swift<br><strong>直接指定好File到剛剛建立的資料夾底下</strong></p>
+<p><fancybox><fancybox><img src="https://i.loli.net/2020/01/03/NrbjDpviVTKCdGF.png" alt></fancybox></fancybox></p>
+<h3 id="確認文件位置"><a href="#確認文件位置" class="headerlink" title="確認文件位置"></a>確認文件位置</h3><ol>
+<li>確認好.swift的檔案有儲存到正確的位置</li>
+<li>如果資料夾內沒有任何.swift的文件，後續pod install後該資料夾不會在Xcode中顯示</li>
+</ol>
+<p><fancybox><img src="https://i.loli.net/2019/12/31/s8jLcU1FTbJX5yP.png" alt></fancybox><br><fancybox><img src="https://i.loli.net/2019/12/31/xaHGyTizIbJnk7M.png" alt></fancybox></p>
+<ol start="2">
+<li>終端機 cd 到 Example資料夾底下<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod install</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="Podspec說明"><a href="#Podspec說明" class="headerlink" title="Podspec說明"></a>Podspec說明</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new <span class="keyword">do</span> <span class="params">|s|</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#---框架外部資訊相關---#</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#框架名稱(required)</span></span><br><span class="line">  s.name             = <span class="string">'HelloMyCocoapods'</span></span><br><span class="line">  <span class="comment">#框架版本，每次更新都得來這邊修改(required)</span></span><br><span class="line">  s.version          = <span class="string">'0.1.0'</span></span><br><span class="line">  <span class="comment">#簡介</span></span><br><span class="line">  s.summary          = <span class="string">'沒有一堆幹話的精簡介紹'</span></span><br><span class="line">  <span class="comment">#長介</span></span><br><span class="line">  s.description = &lt;&lt;-DESC</span><br><span class="line">                     更詳細的介紹</span><br><span class="line">                   DESC</span><br><span class="line">  <span class="comment">#專案主頁面(required)</span></span><br><span class="line">  s.homepage         = <span class="string">'https://github.com/League2EB/HelloMyCocoapods'</span></span><br><span class="line">  <span class="comment">#如果是UI相關框架，可以放擷圖來展示</span></span><br><span class="line">  <span class="comment"># s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'</span></span><br><span class="line">  <span class="comment">#使用許可證(required)</span></span><br><span class="line">  s.license          = &#123; <span class="symbol">:type</span> =&gt; <span class="string">'MIT'</span>, <span class="symbol">:file</span> =&gt; <span class="string">'LICENSE'</span> &#125;</span><br><span class="line">  <span class="comment">#維護人員資訊(required)</span></span><br><span class="line">  s.author           = &#123; <span class="string">'Lazy'</span> =&gt; <span class="string">'Lazy@Lazy.com'</span> &#125;</span><br><span class="line">  <span class="comment">#如果是多人維護</span></span><br><span class="line">  <span class="comment">#spec.authors = &#123; 'Lazy1' =&gt; 'Lazy1<span class="doctag">@Lazy</span>1.com','Lazy2' =&gt; 'Lazy2<span class="doctag">@Lazy</span>2.com' &#125;</span></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="comment">#---框架內部資源相關---#</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#目標語言版本</span></span><br><span class="line">  s.swift_version = <span class="string">'5.0'</span></span><br><span class="line">  <span class="comment">#框架位置(required)</span></span><br><span class="line">  s.source           = &#123; <span class="symbol">:git</span> =&gt; <span class="string">'https://github.com/League2EB/HelloMyCocoapods.git'</span>, <span class="symbol">:tag</span> =&gt; s.version.to_s &#125;</span><br><span class="line">  <span class="comment">#框架部屬目標版本</span></span><br><span class="line">  s.ios.deployment_target = <span class="string">'10.0'</span></span><br><span class="line">  <span class="comment">#框架文件目錄</span></span><br><span class="line">  s.source_files = <span class="string">'HelloMyCocoapods/Classes/**/*'</span></span><br><span class="line">  <span class="comment">#框架圖片資源目錄</span></span><br><span class="line">  s.resource_bundles = &#123;</span><br><span class="line">    <span class="string">'HelloMyCocoapodsresource'</span> =&gt; [<span class="string">'HelloMyCocoapods/Assets/**/*.&#123;png,xib,xcassets&#125;'</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">#依賴的第三方框架</span></span><br><span class="line">  s.dependency <span class="string">"RxSwift"</span></span><br><span class="line">  <span class="comment">#依賴的系統框架</span></span><br><span class="line">  <span class="comment">#s.frameworks = 'UIKit', 'MapKit'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="依賴"><a href="#依賴" class="headerlink" title="依賴"></a>依賴</h3><p>如果自己開發的框架中有依賴另外一個第三方框架，可以在podspec中設定</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s.dependency <span class="string">"RxSwift"</span></span><br><span class="line">s.dependency <span class="string">"Moya"</span></span><br><span class="line">s.dependency <span class="string">"ObjectMapper"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h3><h6 id="加入圖片資源檔案或者XIB"><a href="#加入圖片資源檔案或者XIB" class="headerlink" title="加入圖片資源檔案或者XIB"></a>加入圖片資源檔案或者XIB</h6><ul>
+<li>首先，選擇框架專案檔案</li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2019/12/31/TSKRulaZ7bDmvhU.png" alt></fancybox></p>
+<ul>
+<li>新增Target</li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2019/12/31/6K2tlZbn4HvJEu7.png" alt></fancybox></p>
+<ul>
+<li>選擇macOS後 右邊輸入<code>Bundle</code>並選擇 Bundle</li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2019/12/31/hlpn631gzGQA4XE.png" alt></fancybox></p>
+<ul>
+<li><p>Product Name 千萬不要與框架名稱相同</p>
+</li>
+<li><p>建議命名 框架名稱+Resource</p>
+<ul>
+<li>例如：HelloMyCocoapodsresource</li>
+</ul>
+</li>
+<li><p>新增一個XIB作為測試，這邊命名為CocoaViewController</p>
+</li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2019/12/31/2v8YHETGLFCxA5h.png" alt></fancybox></p>
+<ul>
+<li><p>打開<code>HelloMyCocoapods.podspec</code></p>
+<ul>
+<li><p>解開註解並編輯</p>
+</li>
+<li><p>替換Bundles的名字為剛才取的Product Name</p>
+</li>
+<li><p>並且宣告將要讀取的資源檔案<code>png,xib,xcassets</code></p>
+</li>
+<li><p>附檔名的前後要加入一個波浪括號<code>{}</code>(很多Blog就死不講，害新手打錯找半天)</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s.resource_bundles = &#123;</span><br><span class="line">  <span class="string">'HelloMyCocoapodsresource'</span> =&gt; [<span class="string">'HelloMyCocoapods/Assets/*.&#123;png,xib,xcassets&#125;'</span>]</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>設定Base SDK</p>
+<ul>
+<li><p>選擇「框架」專案中的Build Settings</p>
+</li>
+<li><p>項目Architectures裡頭的Base SDK改為「iOS」</p>
+<p><fancybox><img src="https://i.loli.net/2020/01/03/BKHb59JLGdluhSO.png" alt></fancybox></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="在Assets底下建立兩個資料夾"><a href="#在Assets底下建立兩個資料夾" class="headerlink" title="在Assets底下建立兩個資料夾"></a>在<code>Assets</code>底下建立兩個資料夾</h3><ul>
+<li>一個叫XIB一個叫IMG(名字隨便你取這邊只是範例)</li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2020/01/03/VvhZXElKNuoxOWS.png" alt></fancybox></p>
+<ul>
+<li>點選你的框架底下的同名資料夾後 <code>cmd + n</code></li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2019/12/31/yhbcnpskdARe7j3.png" alt></fancybox></p>
+<ul>
+<li>新增一個XIB，並且命名為CocoapodsViewController<ul>
+<li>新增時直接指定.xib放置的位置為剛剛建立的XIB資料夾</li>
+</ul>
+</li>
+<li>新增一個Asset Catalog 建議使用預設的<code>Media.xcassets</code><ul>
+<li>新增時直接指定.xcassets放置的位置為剛剛建立的IMG資料夾</li>
+</ul>
+</li>
+</ul>
+<p><strong>把這兩個檔案「各別」放置到剛剛建立的XIB、IMG資料夾去</strong><br><fancybox><img src="https://i.loli.net/2020/01/03/ZEHyUqBfdX1csVG.png" alt></fancybox></p>
+<p><strong>關閉Xcode 再次pod install</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>打開專案，應該要自動出現<code>Resources</code>這個資料夾，若有便是成功</li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2019/12/31/lxE9Lrf5FiKUcwp.png" alt></fancybox></p>
+<h3 id="新增圖片資源資料夾"><a href="#新增圖片資源資料夾" class="headerlink" title="新增圖片資源資料夾"></a>新增圖片資源資料夾</h3><ul>
+<li><p><strong>作法一樣但要特別注意名稱，不要命名與Example一樣為<code>Images.xcassets</code></strong></p>
+</li>
+<li><p><strong>建議使用預設的<code>Media.xcassets</code></strong><br><del>- 原因除了Xcode會替我們優化圖片的載入速度之外還有避免被逆向工程之後導出圖片的可能<br>~</del><br><del><strong>如圖，圖片都被壓縮在Assets.car裡面了，可能是我逆向的能力不足但我自己本身拆解不開….</strong></del></p>
+<ul>
+<li>載入速度確實會比較快，但我還是找到破解Assets.car的方法了….</li>
+</ul>
+<p><fancybox><img src="https://i.loli.net/2019/12/31/eVjp9yMU1hnBraS.png" alt></fancybox></p>
+</li>
+</ul>
+<h3 id="結束"><a href="#結束" class="headerlink" title="結束"></a>結束</h3><p>基本上執行到這裡就算是完成了，Example的專案理當也可以使用框架中有開放的類別或者Resource的資源了</p>
+
+      </div>
+      
+        <br>
+        
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-06T05:01:52+08:00">
+  <a class='notlink'>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>更新於 2020年6月6日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Xcode/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Xcode</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Framework/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Framework</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/Pods/" rel="nofollow"><i class="fas fa-tag" aria-hidden="true"></i><p>Pods</p></a></div>
+
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
+    
+      
+        <a class="-mob-share-fb" title="Facebook" rel="external nofollow noopener noreferrer"
+          
+          href="https://www.facebook.com/sharer/sharer.php?u=https://ios.league2eb.me/posts/3ff540f7/&title=iOS_Cocoapods避坑製作流程 | LazyBlog&summary="
+          
+          >
+          
+            <img src="https://image.flaticon.com/icons/png/512/124/124010.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
+  </section>
+
+
+      
+      
+          <div class="prev-next">
+              
+                  <section class="prev">
+                      <span class="art-item-left">
+                          <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一頁</h6>
+                          <h4>
+                              <a href="/posts/b85206ec/" rel="prev" title="powerlevel9k换powerlevel10k">
+                                
+                                    powerlevel9k换powerlevel10k
+                                
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/Mac/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Mac</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+              
+                  <section class="next">
+                      <span class="art-item-right" aria-hidden="true">
+                          <h6>下一頁&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                          <h4>
+                              <a href="/posts/9a4a4d19/" rel="prev" title="完整清除pod">
+                                  
+                                      完整清除pod
+                                  
+                              </a>
+                          </h4>
+                          
+                              
+                              <h6 class="tags">
+                                  <a class="tag" href="/tags/Xcode/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Xcode</a> <a class="tag" href="/tags/Pods/"><i class="fas fa-tag fa-fw" aria-hidden="true"></i> Pods</a>
+                              </h6>
+                          
+                      </span>
+                  </section>
+              
+          </div>
+      
+    </section>
+  </article>
+
+
+
+  <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments">
+    <section class="article typo">
+      <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;評論</h4>
+      
+      
+      
+        <section id="comments">
+          <div id="gitalk-container"></div>
+        </section>
+      
+      
+    </section>
+  </article>
+
+
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'iOS_Cocoapods避坑製作流程',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+    
+    
+      
+      
+        
+          
+          
+            
+              <section class='widget author'>
+  <div class='content pure'>
+    
+      <div class='avatar'>
+        <img class='avatar' src='https://i.imgur.com/kmSE6P0.png'/>
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="/atom.xml"
+              class="social fas fa-rss flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="mailto:poloa5140@gmail.com"
+              class="social fas fa-envelope flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://github.com/League2EB?tab=repositories"
+              class="social fab fa-github flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+          
+            <a href="https://open.spotify.com/artist/0PaQoJb70VpcofM9CA4Lfd"
+              class="social fas fa-headphones-alt flat-btn"
+              target="_blank"
+              rel="external nofollow noopener noreferrer">
+            </a>
+          
+        
+      </div>
+    
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目錄</div>
+  
+    <!-- <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div> -->
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Set-By-Set"><span class="toc-text">Set By Set</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新增框架專案"><span class="toc-text">新增框架專案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#你將會碰到幾個問題"><span class="toc-text">你將會碰到幾個問題</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#開啟專案後刪除測試相關檔案"><span class="toc-text">開啟專案後刪除測試相關檔案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pods"><span class="toc-text">Pods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-text">Example</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#編輯podspec"><span class="toc-text">編輯podspec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#關閉Xcode-並且-pod-install"><span class="toc-text">關閉Xcode 並且 pod install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件介紹"><span class="toc-text">文件介紹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#File"><span class="toc-text">File</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#從專案左側的資料夾可以看見一個很顯眼的File名叫「ReplaceMe」"><span class="toc-text">從專案左側的資料夾可以看見一個很顯眼的File名叫「ReplaceMe」</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#新增資料夾"><span class="toc-text">新增資料夾</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#新增File"><span class="toc-text">新增File</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#確認文件位置"><span class="toc-text">確認文件位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Podspec說明"><span class="toc-text">Podspec說明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#依賴"><span class="toc-text">依賴</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resource"><span class="toc-text">Resource</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#加入圖片資源檔案或者XIB"><span class="toc-text">加入圖片資源檔案或者XIB</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在Assets底下建立兩個資料夾"><span class="toc-text">在Assets底下建立兩個資料夾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新增圖片資源資料夾"><span class="toc-text">新增圖片資源資料夾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#結束"><span class="toc-text">結束</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget grid'>
+  
+<header class='pure'>
+  <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站內導航</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="grid navgation">
+      
+        <li><a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          首頁
+        </a></li>
+      
+        <li><a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章歸檔
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget category'>
+    
+<header class='pure'>
+  <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分類</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/categories/"
+    title="/categories/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <ul class="entry">
+        
+          <li><a class="flat-box" title="/categories/Docker/" href="/categories/Docker/"><div class='name'>Docker</div><div class='badge'>(0)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Jailbreak/" href="/categories/Jailbreak/"><div class='name'>Jailbreak</div><div class='badge'>(11)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Mac/" href="/categories/Mac/"><div class='name'>Mac</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Server/" href="/categories/Server/"><div class='name'>Server</div><div class='badge'>(4)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Shell/" href="/categories/Shell/"><div class='name'>Shell</div><div class='badge'>(6)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/Xcode/" href="/categories/Xcode/"><div class='name'>Xcode</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/iOS/" href="/categories/iOS/"><div class='name'>iOS</div><div class='badge'>(18)</div></a></li>
+        
+          <li><a class="flat-box" title="/categories/mac/" href="/categories/mac/"><div class='name'>mac</div><div class='badge'>(1)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              
+  <section class='widget tagcloud'>
+    
+<header class='pure'>
+  <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;熱門標籤</div>
+  
+    <a class="rightBtn"
+    
+      rel="nofollow"
+    
+    
+    href="/tags/"
+    title="/tags/">
+    <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+  
+</header>
+
+    <div class='content pure'>
+      <a href="/tags/CPU/" style="font-size: 14px; color: #999">CPU</a> <a href="/tags/Command/" style="font-size: 14px; color: #999">Command</a> <a href="/tags/CoreBluetooth/" style="font-size: 14px; color: #999">CoreBluetooth</a> <a href="/tags/Framework/" style="font-size: 14px; color: #999">Framework</a> <a href="/tags/Jailbreak/" style="font-size: 16.5px; color: #888">Jailbreak</a> <a href="/tags/Mac/" style="font-size: 21.5px; color: #666">Mac</a> <a href="/tags/NSArray/" style="font-size: 14px; color: #999">NSArray</a> <a href="/tags/NSURLSession/" style="font-size: 14px; color: #999">NSURLSession</a> <a href="/tags/NotificationCenter/" style="font-size: 14px; color: #999">NotificationCenter</a> <a href="/tags/Objective-C/" style="font-size: 19px; color: #777">Objective-C</a> <a href="/tags/Pods/" style="font-size: 16.5px; color: #888">Pods</a> <a href="/tags/Shell/" style="font-size: 14px; color: #999">Shell</a> <a href="/tags/Simulator/" style="font-size: 14px; color: #999">Simulator</a> <a href="/tags/String/" style="font-size: 14px; color: #999">String</a> <a href="/tags/Swift/" style="font-size: 24px; color: #555">Swift</a> <a href="/tags/UIApplication/" style="font-size: 16.5px; color: #888">UIApplication</a> <a href="/tags/UIView/" style="font-size: 16.5px; color: #888">UIView</a> <a href="/tags/UIViewController/" style="font-size: 19px; color: #777">UIViewController</a> <a href="/tags/VPN/" style="font-size: 14px; color: #999">VPN</a> <a href="/tags/Xcode/" style="font-size: 19px; color: #777">Xcode</a> <a href="/tags/Xcode、iOS/" style="font-size: 14px; color: #999">Xcode、iOS</a> <a href="/tags/ffmpeg/" style="font-size: 14px; color: #999">ffmpeg</a> <a href="/tags/iOS/" style="font-size: 21.5px; color: #666">iOS</a> <a href="/tags/mac/" style="font-size: 14px; color: #999">mac</a> <a href="/tags/oracle/" style="font-size: 19px; color: #777">oracle</a> <a href="/tags/php/" style="font-size: 14px; color: #999">php</a>
+    </div>
+  </section>
+
+
+            
+          
+        
+          
+          
+        
+          
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+            
+              <section class='widget list'>
+  
+<header class='pure'>
+  <div><i class="fas fa-thumbs-up fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;推薦文章</div>
+  
+</header>
+
+  <div class='content pure'>
+    <ul class="entry">
+      
+        <li><a class="flat-box" title="https://league2eb.github.io/posts/4611262f/" href="https://league2eb.github.io/posts/4611262f/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;Fastlane + Shell 打包ipa(包含憑證設定)
+          </div>
+          
+        </a></li>
+      
+        <li><a class="flat-box" title="https://league2eb.github.io/posts/26217a84/" href="https://league2eb.github.io/posts/26217a84/"
+          
+          
+          >
+          <div class='name'>
+            
+              <i class=" fa-fw" aria-hidden="true"></i>
+            
+            &nbsp;&nbsp;使用SSH連接越獄手機，並且不要再打密碼
+          </div>
+          
+        </a></li>
+      
+    </ul>
+  </div>
+</section>
+
+            
+          
+        
+      
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+          
+          
+        
+      
+    
+
+  
+</aside>
+
+<footer id="footer" class="clearfix">
+  
+  
+    <div class="social-wrapper">
+      
+        
+          <a href="/atom.xml"
+            class="social fas fa-rss flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="mailto:poloa5140@gmail.com"
+            class="social fas fa-envelope flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://github.com/League2EB?tab=repositories"
+            class="social fab fa-github flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+        
+          <a href="https://open.spotify.com/artist/0PaQoJb70VpcofM9CA4Lfd"
+            class="social fas fa-headphones-alt flat-btn"
+            target="_blank"
+            rel="external nofollow noopener noreferrer">
+          </a>
+        
+      
+    </div>
+  
+  <br>
+  <div><p>博客內容遵循 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh_TW">姓名標示-非商業性-相同方式分享 4.0 國際 (CC BY-NC-SA 4.0) 協議</a></p>
+</div>
+  <div>
+    
+       
+      總訪問量為
+      <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+      次
+    
+    。
+  </div>
+</footer>
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+  <script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/"||"/";
+    if(!ROOT.endsWith('/'))ROOT += '/';
+  </script>
+
+<script src="//instant.page/1.2.2" type="module" integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+
+  <script async src="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.5/dist/scrollreveal.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      const $reveal = $('.reveal');
+      if ($reveal.length === 0) return;
+      const sr = ScrollReveal({ distance: 0 });
+      sr.reveal('.reveal');
+    });
+  </script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        if ('.cover') {
+          $('.cover').backstretch(
+          [""],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        } else {
+          $.backstretch(
+          [""],
+          {
+            duration: "6000",
+            fade: "2500"
+          });
+        }
+      });
+    </script>
+  
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: "03f82333204f52270880",
+      clientSecret: "ac7f273146189dbf7309c9c6361c60e4a1e8e524",
+      repo: "Comments",
+      owner: "League2EB",
+      admin: "League2EB",
+      
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+      
+      distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+    gitalk.render('gitalk-container');
+  </script>
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/app.js"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-material-x@19.9/js/search.js"></script>
+
+
+
+
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  let COPY_SUCCESS = "複製成功";
+  let COPY_FAILURE = "複製失敗";
+  /*页面载入完成后，创建复制按钮*/
+  !function (e, t, a) {
+    /* code */
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '  <i class="fa fa-copy"></i><span>複製</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+
+      clipboard.on('success', function(e) {
+        //您可以加入成功提示
+        console.info('Action:', e.action);
+        console.info('Text:', e.text);
+        console.info('Trigger:', e.trigger);
+        success_prompt(COPY_SUCCESS);
+        e.clearSelection();
+      });
+      clipboard.on('error', function(e) {
+        //您可以加入失败提示
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+        fail_prompt(COPY_FAILURE);
+      });
+    }
+    initCopyCode();
+
+  }(window, document);
+
+  /**
+   * 弹出式提示框，默认1.5秒自动消失
+   * @param message 提示信息
+   * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+   * @param time 消失时间
+   */
+  var prompt = function (message, style, time)
+  {
+      style = (style === undefined) ? 'alert-success' : style;
+      time = (time === undefined) ? 1500 : time*1000;
+      $('<div>')
+          .appendTo('body')
+          .addClass('alert ' + style)
+          .html(message)
+          .show()
+          .delay(time)
+          .fadeOut();
+  };
+
+  // 成功提示
+  var success_prompt = function(message, time)
+  {
+      prompt(message, 'alert-success', time);
+  };
+
+  // 失败提示
+  var fail_prompt = function(message, time)
+  {
+      prompt(message, 'alert-danger', time);
+  };
+
+  // 提醒
+  var warning_prompt = function(message, time)
+  {
+      prompt(message, 'alert-warning', time);
+  };
+
+  // 信息提示
+  var info_prompt = function(message, time)
+  {
+      prompt(message, 'alert-info', time);
+  };
+
+</script>
+
+
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
