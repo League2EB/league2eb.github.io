@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Chrome找回下架或被誤判惡意的套件</title>
+      <link href="/posts/3fd5bfe1/"/>
+      <url>/posts/3fd5bfe1/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>喜歡使用的Google Chrome 套件被下架或者被誤判為惡意軟體無法使用時，快速解決方式就是下載原始檔案並且放在本地端執行</p></blockquote><h2 id="找出該套件的資料夾"><a href="#找出該套件的資料夾" class="headerlink" title="找出該套件的資料夾"></a>找出該套件的資料夾</h2><ul><li>打開擴充套件頁面</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome://extensions/</span><br></pre></td></tr></table></figure><ul><li>複製應用ID，這邊舉例One Click URL Shortener，因為今天發現他背叛定為惡意程式</li></ul><p><img src="https://i.loli.net/2020/11/12/Urm5DbtugjKqiAE.png" alt></p><ul><li>開啟終端機，並移動到下面的路徑</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /Users/你的用戶名/Library/Application Support/Google/Chrome/Default/Extensions</span><br></pre></td></tr></table></figure><ul><li>搜尋該資料夾</li></ul><p><img src="https://i.loli.net/2020/11/12/MtNRpnFjIOxqSrL.png" alt></p><p><strong>所以，完整路徑就是</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/Users/你的用戶名/Library/Application Support/Google/Chrome/Default/Extensions/fjnodoodcohggdkacpmiidjikhlihcdk</span><br></pre></td></tr></table></figure><ul><li>確認搜尋到該資料夾後，回到Google Chrome「封裝擴充功能」</li></ul><p><img src="https://i.loli.net/2020/11/12/ubYAKeQ1WFGpCN3.png" alt></p><ul><li>目錄請填寫剛剛找到的資料夾並且加入版本號</li><li>私密金鑰檔案留空</li><li>點擊封裝擴充功能</li></ul><p><img src="https://i.loli.net/2020/11/12/XVfJqkarOQDcH8g.png" alt></p><ul><li>完成後會出現該對話視窗，並且於擴充路經中找到附檔名為<code>crx</code>的檔案</li></ul><p><img src="https://i.loli.net/2020/11/12/nehz5CtuZdks34m.png" alt><br><img src="https://i.loli.net/2020/11/12/stzpHBi8byoGCZU.png" alt></p><h2 id="使用壞壞工具把程式碼給尻出來"><a href="#使用壞壞工具把程式碼給尻出來" class="headerlink" title="使用壞壞工具把程式碼給尻出來"></a>使用壞壞工具把程式碼給尻出來</h2><p><a href="https://crxextractor.com/" target="_blank" rel="noopener">壞壞工具</a></p><ul><li>選擇剛剛的crx檔案</li></ul><p><img src="https://i.loli.net/2020/11/12/2nzMvaBdHxD5iYK.png" alt></p><ul><li>下載原始碼到你自己想要放的資料夾</li></ul><h2 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h2><p><a href="https://tinyurl.com/yxfzhzh3" target="_blank" rel="noopener">快速安裝</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> mac </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> chrome </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Swift於字串中插入指定文字</title>
       <link href="/posts/8e0ec638/"/>
       <url>/posts/8e0ec638/</url>
