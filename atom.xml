@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://ios.league2eb.me/"/>
-  <updated>2020-11-12T08:10:04.709Z</updated>
+  <updated>2021-01-26T10:50:50.519Z</updated>
   <id>https://ios.league2eb.me/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker啟動WP</title>
+    <link href="https://ios.league2eb.me/posts/405aca44/"/>
+    <id>https://ios.league2eb.me/posts/405aca44/</id>
+    <published>2021-01-26T10:43:13.000Z</published>
+    <updated>2021-01-26T10:50:50.519Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Docker啟動WP"><a href="#Docker啟動WP" class="headerlink" title="Docker啟動WP"></a>Docker啟動WP</h1><h2 id="安裝Docker"><a href="#安裝Docker" class="headerlink" title="安裝Docker"></a>安裝Docker</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com -o get-docker.sh</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh get-docker.sh</span><br></pre></td></tr></table></figure><h2 id="確認有安裝好Docker"><a href="#確認有安裝好Docker" class="headerlink" title="確認有安裝好Docker"></a>確認有安裝好Docker</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker -version</span><br></pre></td></tr></table></figure><h2 id="安裝Docker-Comopose"><a href="#安裝Docker-Comopose" class="headerlink" title="安裝Docker Comopose"></a>安裝Docker Comopose</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install docker-compose</span><br></pre></td></tr></table></figure><h2 id="確認有安裝好docker-compose"><a href="#確認有安裝好docker-compose" class="headerlink" title="確認有安裝好docker compose"></a>確認有安裝好docker compose</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose</span><br></pre></td></tr></table></figure><h2 id="利用docker-compose把yml檔案中的描述做啟動"><a href="#利用docker-compose把yml檔案中的描述做啟動" class="headerlink" title="利用docker compose把yml檔案中的描述做啟動"></a>利用docker compose把yml檔案中的描述做啟動</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure><h2 id="yml"><a href="#yml" class="headerlink" title="yml"></a>yml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">version: &apos;3.3&apos;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line"></span><br><span class="line">  wordpress:</span><br><span class="line">    image: wordpress</span><br><span class="line">    restart: always</span><br><span class="line">    ports:</span><br><span class="line">      - 80:80</span><br><span class="line">    environment:</span><br><span class="line">      WORDPRESS_DB_HOST: db</span><br><span class="line">      WORDPRESS_DB_USER: exampleuser</span><br><span class="line">      WORDPRESS_DB_PASSWORD: examplepass</span><br><span class="line">      WORDPRESS_DB_NAME: exampledb</span><br><span class="line">    volumes:</span><br><span class="line">      - ./wordpress:/var/www/html</span><br><span class="line"></span><br><span class="line">  db:</span><br><span class="line">    image: mysql:5.7</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">      MYSQL_DATABASE: exampledb</span><br><span class="line">      MYSQL_USER: exampleuser</span><br><span class="line">      MYSQL_PASSWORD: examplepass</span><br><span class="line">      MYSQL_RANDOM_ROOT_PASSWORD: &apos;1&apos;</span><br><span class="line">    volumes:</span><br><span class="line">      - ./db:/var/lib/mysql</span><br><span class="line"></span><br><span class="line">docker-compose.yml (END)</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Docker啟動WP&quot;&gt;&lt;a href=&quot;#Docker啟動WP&quot; class=&quot;headerlink&quot; title=&quot;Docker啟動WP&quot;&gt;&lt;/a&gt;Docker啟動WP&lt;/h1&gt;&lt;h2 id=&quot;安裝Docker&quot;&gt;&lt;a href=&quot;#安裝Docker&quot; cla
+      
+    
+    </summary>
+    
+    
+      <category term="Server" scheme="https://ios.league2eb.me/categories/Server/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Chrome找回下架或被誤判惡意的套件</title>
@@ -530,30 +554,6 @@
       <category term="Xcode" scheme="https://ios.league2eb.me/tags/Xcode/"/>
     
       <category term="CPU" scheme="https://ios.league2eb.me/tags/CPU/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>powerlevel9k换powerlevel10k</title>
-    <link href="https://ios.league2eb.me/posts/b85206ec/"/>
-    <id>https://ios.league2eb.me/posts/b85206ec/</id>
-    <published>2020-01-06T06:20:33.000Z</published>
-    <updated>2020-06-04T10:22:39.581Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="據前輩說：powerlevel10k的速度比powerlevel9k快？"><a href="#據前輩說：powerlevel10k的速度比powerlevel9k快？" class="headerlink" title="據前輩說：powerlevel10k的速度比powerlevel9k快？"></a>據前輩說：powerlevel10k的速度比powerlevel9k快？</h1><p><del>就算沒有比較快，但就是要用最新的東西，因為這就是潮</del></p><h3 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h3><p>打開iTerm，移動一下</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br></pre></td></tr></table></figure><p>安裝</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'source ~/powerlevel10k/powerlevel10k.zsh-theme'</span> &gt;&gt;! ~/.zshrc</span><br></pre></td></tr></table></figure><h3 id="編輯-zshrc"><a href="#編輯-zshrc" class="headerlink" title="編輯.zshrc"></a>編輯.zshrc</h3><ul><li>這個檔案會在 <code>~/</code>底下<br>修改ZSH_THEME=”powerlevel9k/powerlevel9k”<br>↓↓↓↓↓↓↓↓↓↓↓↓↓↓</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZSH_THEME=<span class="string">"powerlevel10k/powerlevel10k"</span></span><br></pre></td></tr></table></figure><p><strong>儲存後關閉</strong></p><h3 id="檢查是否正確安裝"><a href="#檢查是否正確安裝" class="headerlink" title="檢查是否正確安裝"></a>檢查是否正確安裝</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls ~/.oh-my-zsh/custom/themes</span><br></pre></td></tr></table></figure><p>如果安裝成功會出現powerlevel10k<br><img src="https://i.loli.net/2020/01/06/8u43jdJGxOfAwlR.png" alt="screely-1578294038974.png"></p><p>如果沒有…那就再下一次指令</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --depth=1 https://github.com/romkatv/powerlevel10k.git <span class="variable">$ZSH_CUSTOM</span>/themes/powerlevel10k</span><br></pre></td></tr></table></figure><h3 id="設定"><a href="#設定" class="headerlink" title="設定"></a>設定</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p10k configure</span><br></pre></td></tr></table></figure><p>按照畫面上的提示選擇自己想要的就可以了</p><h3 id="結束"><a href="#結束" class="headerlink" title="結束"></a>結束</h3><p>如果想要設定更細節的東西</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.p10k.zsh</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;據前輩說：powerlevel10k的速度比powerlevel9k快？&quot;&gt;&lt;a href=&quot;#據前輩說：powerlevel10k的速度比powerlevel9k快？&quot; class=&quot;headerlink&quot; title=&quot;據前輩說：powerlevel10k的速
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Mac" scheme="https://ios.league2eb.me/tags/Mac/"/>
     
   </entry>
   
