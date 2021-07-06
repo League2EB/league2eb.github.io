@@ -324,19 +324,19 @@
 
     <section class="article typo">
       <div class="article-entry" itemprop="articleBody">
-        <h1 id="在Ubuntu系統底下建立Bitwarden"><a href="#在Ubuntu系統底下建立Bitwarden" class="headerlink" title="在Ubuntu系統底下建立Bitwarden"></a>在Ubuntu系統底下建立Bitwarden</h1><h2 id="前言與起源"><a href="#前言與起源" class="headerlink" title="前言與起源"></a>前言與起源</h2><p>:::danger<br>網路上相關文章非常多，但寫錯寫不清楚的占比大約90%<br>這就是為什麼我寫這篇文章來教學Bitwarden。<br>:::</p>
-<p>:::danger<br>幹，我就是在講你們這些寫出誤人子弟的文章又不負責任的垃圾態度的人講<br>因為這些垃圾文章的誤導讓我碰壁研究30多個小時<br>可能我就是笨，但是你他媽的能力很強誤人子弟就比較厲害嗎?<br>:::</p>
+        <h1 id="在Ubuntu系統底下建立Bitwarden"><a href="#在Ubuntu系統底下建立Bitwarden" class="headerlink" title="在Ubuntu系統底下建立Bitwarden"></a>在Ubuntu系統底下建立Bitwarden</h1><h2 id="前言與起源"><a href="#前言與起源" class="headerlink" title="前言與起源"></a>前言與起源</h2><p>網路上相關文章非常多，但寫錯寫不清楚的占比大約90%<br>這就是為什麼我寫這篇文章來教學Bitwarden。</p>
+<p>還有，<a href="https://www.facebook.com/SUNOFMORNING" target="_blank" rel="noopener">樂團</a>成員總是問來問去某個服務的帳號密碼，但在通訊軟體交換密碼又是一件危險的事情<br>成員本身也沒有使用密碼管理器的習慣，所以乾脆在原本的Server上建立一個管理器服務<br>如此一來主管理員控制整個密碼資料存取，成員各自也可以建立自己的密碼資訊。</p>
 <h2 id="什麼是Bitwarden"><a href="#什麼是Bitwarden" class="headerlink" title="什麼是Bitwarden"></a>什麼是Bitwarden</h2><p><a href="https://bitwarden.com/" target="_blank" rel="noopener">Bitwarden</a></p>
 <p><strong>一款密碼管理工具</strong>，顧名思義就是一個管理你所有密碼的平台</p>
 <p>類似的平台有很多，例如：<a href="https://1password.com/zh-tw/" target="_blank" rel="noopener">1password</a>、<a href="https://www.lastpass.com/" target="_blank" rel="noopener">lastpass</a></p>
 <h2 id="為什麼需要密碼管理器"><a href="#為什麼需要密碼管理器" class="headerlink" title="為什麼需要密碼管理器"></a>為什麼需要密碼管理器</h2><blockquote>
-<p><code>想像你有三棟房子在台北、台中、高雄，你鑰匙會用同一把嗎?</code><br>這個答案非常肯定是「不會」，因為危險。</p>
+<p>想像你有三棟房子在台北、台中、高雄，三個家門的鑰匙會用同一把嗎?<br>這個答案非常肯定是「不會」，因為危險。</p>
 </blockquote>
 <blockquote>
-<p><code>所以你的臉書、IG、信箱都不算資產囉?</code><br>既然三棟房子使用不同的鑰匙，為什麼三個不同平台的密碼要用同一組?<br>一組密碼打天下的的優點就是</p>
+<p>所以你的臉書、IG、信箱都不算資產囉?<br>既然三棟房子使用不同的鑰匙，為什麼三個不同平台的密碼要用同一組?<br>一組密碼打天下的的優點就是「便利」，但是便利的背後隱藏的卻是嚴重的資安問題<br>有的人會說：我只是個賣茶葉的，又不是工程師，幹嘛學這個?<br>「資訊安全，人人有責」，因為自己不注意資安被竊取資料然後再去請朋友、警察協助<br>「預防勝於治療」希望各位都理解。</p>
 </blockquote>
 <blockquote>
-<p><code>如果使用的網路平台有一百個，不就要記一百組不同的密碼?</code><br>所以你現在看到這篇文章，教你怎麼使用密碼管理器與搭建。</p>
+<p>如果使用的網路平台有一百個，不就要記一百組不同的密碼?<br>所以你現在看到這篇文章，教你怎麼使用密碼管理器與搭建。</p>
 </blockquote>
 <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><ul>
 <li>一台伺服器，請移步 <a href="https://ios.league2eb.me/posts/af9bcccd/">申請每月10T流量的免費伺服器</a></li>
@@ -344,12 +344,18 @@
 <li>網域名稱，推薦 <a href="https://www.gandi.net/zh-Hant" target="_blank" rel="noopener">Gandi</a></li>
 <li>SSL簽名，請移步 <a href="https://ios.league2eb.me/posts/27a8063c/">利用Let’s Encrypt自動簽署網域SSL憑證</a></li>
 </ul>
-<h2 id="安裝Docker"><a href="#安裝Docker" class="headerlink" title="安裝Docker"></a>安裝Docker</h2><ul>
-<li>更新軟體資訊列表</li>
-</ul>
+<h2 id="更新一下"><a href="#更新一下" class="headerlink" title="更新一下"></a>更新一下</h2><ul>
+<li><p>更新軟體資訊列表</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新軟體</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get upgrade</span><br></pre></td></tr></table></figure>
 
-<ul>
+</li>
+</ul>
+<h2 id="安裝Nginx"><a href="#安裝Nginx" class="headerlink" title="安裝Nginx"></a>安裝Nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install nginx -y</span><br></pre></td></tr></table></figure>
+
+<h2 id="安裝Docker"><a href="#安裝Docker" class="headerlink" title="安裝Docker"></a>安裝Docker</h2><ul>
 <li>安裝</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install docker.io</span><br></pre></td></tr></table></figure>
@@ -366,7 +372,112 @@
 
 <h2 id="安裝Docker-compose"><a href="#安裝Docker-compose" class="headerlink" title="安裝Docker-compose"></a>安裝Docker-compose</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>
 
-<h2 id="放棄"><a href="#放棄" class="headerlink" title="放棄"></a>放棄</h2><p>突然不想寫了，因為總是覺得用文字無法好好表達<br>想說用影片來做教學好了，但是影片做完還要剪接<br>但還要開Premiere很麻煩，先這樣。</p>
+<h2 id="安裝Bitwarden"><a href="#安裝Bitwarden" class="headerlink" title="安裝Bitwarden"></a>安裝Bitwarden</h2><ul>
+<li>建立儲存資料夾</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /data/bitwarden &amp;&amp; cd /data/bitwarden</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>建立docker-compose設定文件<ul>
+<li>建議複製到筆記本修改好後，再貼到伺服器的終端機內執行</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">cat &gt; docker-compose.yml &lt;&lt;EOF</span><br><span class="line">version: <span class="string">'3'</span></span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  bitwarden:</span><br><span class="line">    image: bitwardenrs/server:latest</span><br><span class="line">    container_name: bitwarden</span><br><span class="line">    restart: always</span><br><span class="line">    volumes:</span><br><span class="line">      - /data/docker/bitwarden/data:/data</span><br><span class="line">    environment:</span><br><span class="line">      WEB_VAULT_ENABLED: <span class="string">'true'</span></span><br><span class="line">      SIGNUPS_ALLOWED: <span class="string">'true'</span></span><br><span class="line">      WEBSOCKET_ENABLED: <span class="string">'true'</span></span><br><span class="line">      LOG_FILE: /data/bitwarden.log</span><br><span class="line">      <span class="comment"># 郵件SMTP這段不是必須，爽用再用</span></span><br><span class="line">      SMTP_HOST: <span class="string">'mail.gandi.net'</span> <span class="comment"># 郵件伺服器</span></span><br><span class="line">      SMTP_FROM: <span class="string">'service@league2eb.me'</span> <span class="comment"># 寄件者</span></span><br><span class="line">      SMTP_PORT: <span class="string">'465'</span></span><br><span class="line">      SMTP_SSL: <span class="string">'true'</span></span><br><span class="line">      SMTP_USERNAME: <span class="string">'service@league2eb.me'</span></span><br><span class="line">      SMTP_PASSWORD: <span class="string">'password'</span></span><br><span class="line">      SMTP_EXPLICIT_TLS: <span class="string">'true'</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="number">7006</span>:<span class="number">80</span></span><br><span class="line">      - <span class="number">7007</span>:<span class="number">3012</span></span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<h2 id="設定Nginx反向代理"><a href="#設定Nginx反向代理" class="headerlink" title="設定Nginx反向代理"></a>設定Nginx反向代理</h2><ul>
+<li>移動到nginx設定檔案的位置，並新增設定檔案</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/nginx/sites-available &amp;&amp; vi bitwarden.conf</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>建議先使用筆記本編輯好下面的內容後，在貼到bitwarden.conf中</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">upstream bitwardenrs-<span class="keyword">default</span> &#123; server <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">7006</span>; &#125;</span><br><span class="line">upstream bitwardenrs-ws &#123; server <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">7007</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Redirect HTTP to HTTPS</span></span><br><span class="line">server &#123;</span><br><span class="line">    listen <span class="number">80</span>;</span><br><span class="line">    server_name pass.league2eb.me; <span class="comment"># 改成你自己的網域</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">301</span> https:<span class="comment">//$host$request_uri;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen <span class="number">443</span> ssl http2;</span><br><span class="line">    server_name pass.league2eb.me;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#SSL</span></span><br><span class="line">    <span class="comment"># 這裡的SSL憑證請改成自己的路徑</span></span><br><span class="line">    ssl_certificate /etc/nginx/ssl/league2eb.me/fullchain.cer;</span><br><span class="line">    <span class="comment"># 這裡的SSL憑證請改成自己的路徑</span></span><br><span class="line">    ssl_certificate_key /etc/nginx/ssl/league2eb.me/keyfile.pem;</span><br><span class="line">    ssl_protocols TLSv1<span class="number">.2</span> TLSv1<span class="number">.3</span>;</span><br><span class="line">    ssl_prefer_server_ciphers off;</span><br><span class="line">    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;</span><br><span class="line">    add_header Content-Security-Policy upgrade-insecure-requests;</span><br><span class="line">    add_header X-XSS-Protection <span class="string">"1; mode=block"</span>;</span><br><span class="line">    add_header X-Content-Type-Options nosniff;</span><br><span class="line">    add_header Referrer-Policy <span class="string">"no-referrer-when-downgrade"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#Location</span></span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_set_header Host $host;</span><br><span class="line">      proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">      proxy_set_header X-Forwarded-<span class="keyword">For</span> $proxy_add_x_forwarded_for;</span><br><span class="line">      proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line"></span><br><span class="line">      proxy_pass http:<span class="comment">//bitwardenrs-default;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /notifications/hub/negotiate &#123;</span><br><span class="line">      proxy_set_header Host $host;</span><br><span class="line">      proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">      proxy_set_header X-Forwarded-<span class="keyword">For</span> $proxy_add_x_forwarded_for;</span><br><span class="line">      proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line"></span><br><span class="line">      proxy_pass http:<span class="comment">//bitwardenrs-default;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location /notifications/hub &#123;</span><br><span class="line">      proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">      proxy_set_header Connection $http_connection;</span><br><span class="line">      proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line"></span><br><span class="line">      proxy_pass http:<span class="comment">//bitwardenrs-ws;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="連結設定檔案符號表"><a href="#連結設定檔案符號表" class="headerlink" title="連結設定檔案符號表"></a>連結設定檔案符號表</h2><ul>
+<li>連結檔案並刷新nginx服務</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/nginx/sites-enabled &amp;&amp; ln -s ../sites-available/bitwarden.conf . &amp;&amp; systemctl reload nginx</span><br></pre></td></tr></table></figure>
+
+<h2 id="正式啟用Bitwarden"><a href="#正式啟用Bitwarden" class="headerlink" title="正式啟用Bitwarden"></a>正式啟用Bitwarden</h2><ul>
+<li>移動到bitwarden資料夾</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /data/bitwarden</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>啟動</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>建立成功</li>
+</ul>
+<p><img src="https://i.imgur.com/DbH131q.png" alt></p>
+<h2 id="使用、建立帳號"><a href="#使用、建立帳號" class="headerlink" title="使用、建立帳號"></a>使用、建立帳號</h2><ul>
+<li>訪問自己的網域名稱將會看到這個畫面</li>
+<li>選擇「建立帳戶」</li>
+</ul>
+<p><img src="https://i.imgur.com/13or5Vf.png" alt></p>
+<ul>
+<li>填寫資料送出</li>
+</ul>
+<p><img src="https://i.imgur.com/gUKJ6Ye.png" alt></p>
+<h2 id="禁止建立帳號"><a href="#禁止建立帳號" class="headerlink" title="禁止建立帳號"></a>禁止建立帳號</h2><blockquote>
+<p>當家人、團隊組織成員或者自己建立好帳號後，必須關閉該註冊功能<br>否則就是開大門。</p>
+</blockquote>
+<ul>
+<li>回到伺服器內終端機操作移動到bitwarden資料夾</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /data/bitwarden</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>編輯docker-compose.yml</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>將SIGNUPS_ALLOWED改為false</li>
+<li>如果不打算用網頁版本管理，WEB_VAULT_ENABLED改為false</li>
+</ul>
+<p><img src="https://i.imgur.com/XKTFVkG.jpg" alt></p>
+<h2 id="重啟容器"><a href="#重啟容器" class="headerlink" title="重啟容器"></a>重啟容器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose down &amp;&amp; docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>成功</li>
+</ul>
+<p><img src="https://i.imgur.com/t2uz09T.png" alt></p>
+<h2 id="手機端使用-iOS"><a href="#手機端使用-iOS" class="headerlink" title="手機端使用(iOS)"></a>手機端使用(iOS)</h2><ul>
+<li>前往蘋果商店<a href="https://apps.apple.com/tw/app/bitwarden-password-manager/id1137397744?l=en" target="_blank" rel="noopener">下載</a>bitwarden手機版本</li>
+<li>打開應用開點擊左上角齒輪</li>
+<li>伺服器 URL輸入自己的網域名稱後儲存，其餘可忽略</li>
+<li><a href="https://bitwarden.com/download/" target="_blank" rel="noopener">手機、mac、windows都有提供，當然也少不了瀏覽器外掛</a></li>
+</ul>
+<hr>
+<img src="https://i.imgur.com/MiHYVd3.jpg" width="295" height="640">
+<img src="https://i.imgur.com/vTkGcUL.png" width="295" height="640">
+
+<hr>
+<ul>
+<li>應用首頁後，使用方才網頁建立的帳號密碼登入</li>
+</ul>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><blockquote>
+<p>整理一下「我覺得」密碼外洩、被盜用、重複登入警告的原因</p>
+</blockquote>
+<ul>
+<li>將密碼儲存在Google瀏覽器或者Safari瀏覽器。<ul>
+<li>就是為了便利所以勾選「記住我」導致</li>
+</ul>
+</li>
+<li>同一組密碼使用所有平台。</li>
+<li>使用通訊軟體直接交換密碼，如果你硬要，那我推薦 <a href="https://telegram.org/" target="_blank" rel="noopener">Telegram</a>。</li>
+</ul>
+<h2 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h2><ul>
+<li>如果要自己架設，需要有相對應管理Server的能力或者阻擋能力</li>
+<li>只要密碼儲存在「網路」就是不可能永遠安全。</li>
+<li>這則教學文章建立在你沒有能力買NAS的前提下，如果有能力還是建議買NAS來架設Bitwarden。</li>
+</ul>
+<h2 id="好文推薦"><a href="#好文推薦" class="headerlink" title="好文推薦 !"></a>好文推薦 !</h2><p><a href="https://www.jkg.tw/p1984/" target="_blank" rel="noopener">在群暉 Docker 搭建免費開源密碼管理器 Bitwarden</a></p>
 
       </div>
       
@@ -378,10 +489,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-05T22:13:19+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-07-06T09:44:34+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新於 2021年7月5日</p>
+    <p>更新於 2021年7月6日</p>
   </a>
 </div>
 
@@ -580,7 +691,7 @@
 </header>
 
     <div class='content pure'>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#在Ubuntu系統底下建立Bitwarden"><span class="toc-text">在Ubuntu系統底下建立Bitwarden</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言與起源"><span class="toc-text">前言與起源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什麼是Bitwarden"><span class="toc-text">什麼是Bitwarden</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#為什麼需要密碼管理器"><span class="toc-text">為什麼需要密碼管理器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求"><span class="toc-text">需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝Docker"><span class="toc-text">安裝Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝Docker-compose"><span class="toc-text">安裝Docker-compose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#放棄"><span class="toc-text">放棄</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#在Ubuntu系統底下建立Bitwarden"><span class="toc-text">在Ubuntu系統底下建立Bitwarden</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言與起源"><span class="toc-text">前言與起源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什麼是Bitwarden"><span class="toc-text">什麼是Bitwarden</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#為什麼需要密碼管理器"><span class="toc-text">為什麼需要密碼管理器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需求"><span class="toc-text">需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新一下"><span class="toc-text">更新一下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝Nginx"><span class="toc-text">安裝Nginx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝Docker"><span class="toc-text">安裝Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝Docker-compose"><span class="toc-text">安裝Docker-compose</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝Bitwarden"><span class="toc-text">安裝Bitwarden</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#設定Nginx反向代理"><span class="toc-text">設定Nginx反向代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#連結設定檔案符號表"><span class="toc-text">連結設定檔案符號表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正式啟用Bitwarden"><span class="toc-text">正式啟用Bitwarden</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用、建立帳號"><span class="toc-text">使用、建立帳號</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#禁止建立帳號"><span class="toc-text">禁止建立帳號</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重啟容器"><span class="toc-text">重啟容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#手機端使用-iOS"><span class="toc-text">手機端使用(iOS)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#後記"><span class="toc-text">後記</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#警告"><span class="toc-text">警告</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#好文推薦"><span class="toc-text">好文推薦 !</span></a></li></ol></li></ol>
     </div>
   </section>
 
