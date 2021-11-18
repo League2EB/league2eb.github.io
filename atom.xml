@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>LazyBlog</title>
+  <title>League2eb</title>
   
   <subtitle>璿慈一世、唯慈魚心</subtitle>
   <link href="/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>https://ios.league2eb.me/</id>
   
   <author>
-    <name>Lazy</name>
+    <name>League2eb</name>
     
   </author>
   
