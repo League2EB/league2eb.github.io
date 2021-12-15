@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>Category: Mac | League2eb</title>
+  <title>Category: mac | League2eb</title>
   
   <meta name="keywords" content="League2eb;iOS;Objective-c;Swift">
   
@@ -236,6 +236,8 @@
         
           
         
+          
+        
       
     
     
@@ -253,8 +255,8 @@
       
         
   <h2 class="title">
-    <a href="/posts/9a823c6d/">
-      用指令殺死卡住的程式
+    <a href="/posts/3fd5bfe1/">
+      Chrome找回下架或被誤判惡意的套件
     </a>
   </h2>
 
@@ -284,7 +286,7 @@
             <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2020-05-19</p>
+    <p>2020-11-12</p>
   </a>
 </div>
 
@@ -294,9 +296,9 @@
             
   
   <div class='new-meta-item category'>
-    <a href='/categories/Mac/' rel="nofollow">
+    <a href='/categories/mac/' rel="nofollow">
       <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Mac</p>
+      <p>mac</p>
     </a>
   </div>
 
@@ -321,7 +323,7 @@
       
       
         <div class="readmore">
-          <a href="/posts/9a823c6d/" class="flat-box">
+          <a href="/posts/3fd5bfe1/" class="flat-box">
             <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
             閱讀全文
           </a>
@@ -331,9 +333,112 @@
     
       <div class="full-width auto-padding tags">
         
-          <a href="/tags/Shell/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Shell</a>
+          <a href="/tags/chrome/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> chrome</a>
         
-          <a href="/tags/Command/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> Command</a>
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/posts/1ea94c7e/">
+      Mac + OBS + GoPro + instagram直播
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    
+      <a href="https://ios.league2eb.me" rel="nofollow">
+        
+          <i class="fas fa-user" aria-hidden="true"></i>
+        
+        <p>League2eb</p>
+      </a>
+    
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2020-05-17</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/mac/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>mac</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        <div class="readmore">
+          <a href="/posts/1ea94c7e/" class="flat-box">
+            <i class="fas fa-book-open fa-fw" aria-hidden="true"></i>
+            閱讀全文
+          </a>
+        </div>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/mac/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> mac</a>
+        
+          <a href="/tags/ffmpeg/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> ffmpeg</a>
+        
+          <a href="/tags/php/" rel="nofollow"><i class="fas fa-tag fa-fw"></i> php</a>
         
       </div>
     
@@ -890,68 +995,6 @@
       time = (time === undefined) ? 1500 : time*1000;
       $('<div>')
           .appendTo('body')
-          .addClass('alert ' + style)
-          .html(message)
-          .show()
-          .delay(time)
-          .fadeOut();
-  };
-
-  // 成功提示
-  var success_prompt = function(message, time)
-  {
-      prompt(message, 'alert-success', time);
-  };
-
-  // 失败提示
-  var fail_prompt = function(message, time)
-  {
-      prompt(message, 'alert-danger', time);
-  };
-
-  // 提醒
-  var warning_prompt = function(message, time)
-  {
-      prompt(message, 'alert-warning', time);
-  };
-
-  // 信息提示
-  var info_prompt = function(message, time)
-  {
-      prompt(message, 'alert-info', time);
-  };
-
-</script>
-
-
-<!-- fancybox -->
-<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-<script>
-  let LAZY_LOAD_IMAGE = "";
-  $(".article-entry").find("fancybox").find("img").each(function () {
-      var element = document.createElement("a");
-      $(element).attr("data-fancybox", "gallery");
-      $(element).attr("href", $(this).attr("src"));
-      /* 图片采用懒加载处理时,
-       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
-       * 那么此处将原本的属性名src替换为对应属性名data-original,
-       * 修改如下
-       */
-       if (LAZY_LOAD_IMAGE) {
-         $(element).attr("href", $(this).attr("data-original"));
-       }
-      $(this).wrap(element);
-  });
-</script>
-
-
-
-
-
-  <script>setLoadingBarProgress(100);</script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
-</html>
-   .appendTo('body')
           .addClass('alert ' + style)
           .html(message)
           .show()
