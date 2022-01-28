@@ -360,7 +360,7 @@
 <h4 id="UUID-把剛剛在網站上的那組號碼更換"><a href="#UUID-把剛剛在網站上的那組號碼更換" class="headerlink" title="UUID 把剛剛在網站上的那組號碼更換"></a>UUID 把剛剛在網站上的那組號碼更換</h4><p><img src="https://i.loli.net/2020/05/03/ICE1yY76RkWe3O2.png" alt></p>
 <h4 id="把一開始去後台設定的防火牆連接埠號碼替換"><a href="#把一開始去後台設定的防火牆連接埠號碼替換" class="headerlink" title="把一開始去後台設定的防火牆連接埠號碼替換"></a>把一開始去後台設定的防火牆連接埠號碼替換</h4><p><img src="https://i.loli.net/2020/05/03/LAvXdc3Gqa2l4zK.png" alt></p>
 <h2 id="Server-存檔"><a href="#Server-存檔" class="headerlink" title="[Server] 存檔"></a>[Server] 存檔</h2><p><a href="https://lmgtfy.com/?q=vi+%E5%AD%98%E6%AA%94" target="_blank" rel="noopener">如果不知道怎麼存檔，看這裡</a></p>
-<h2 id="server-開啟v2ray映像檔"><a href="#server-開啟v2ray映像檔" class="headerlink" title="[server] 開啟v2ray映像檔"></a>[server] 開啟v2ray映像檔</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name v2ray --cap-add=NET_ADMIN --restart=always -p 9487:9487/tcp  -v /etc/v2ray:/etc/v2ray -v /var/log/v2ray:/var/log/v2ray v2fly/v2fly-core</span><br></pre></td></tr></table></figure>
+<h2 id="server-開啟v2ray映像檔"><a href="#server-開啟v2ray映像檔" class="headerlink" title="[server] 開啟v2ray映像檔"></a>[server] 開啟v2ray映像檔</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name v2ray --cap-add=NET_ADMIN --restart=always -p 9487:9487/tcp  -v /etc/v2ray:/etc/v2ray -v /var/log/v2ray:/var/log/v2ray v2ray/official</span><br></pre></td></tr></table></figure>
 
 <p><code>檢查一下</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
@@ -394,10 +394,10 @@
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-06-04T18:22:39+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2022-01-29T03:54:50+08:00">
   <a class='notlink'>
     <i class="fas fa-clock" aria-hidden="true"></i>
-    <p>更新於 2020年6月4日</p>
+    <p>更新於 2022年1月29日</p>
   </a>
 </div>
 
